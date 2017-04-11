@@ -1,0 +1,37 @@
+.content-change {
+  &.content-change-enter {
+    opacity: 0;
+
+    .el-visual {
+      transform: translateX(0);
+      transition-delay: 1s;
+    }
+
+    .el-content {
+      transform: translateX(0);
+      transition-delay: 1s;
+    }
+
+    &.content-change-enter-active {
+      opacity: 1;
+      transition-delay: 1s;
+    }
+  }
+}
+
+.content-change-leave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  &.content-change-leave-active {
+    .el-visual {
+      transform: translateX(-150%);
+    }
+
+    .el-content {
+      transform: translateX(150%);
+    }
+  }
+}

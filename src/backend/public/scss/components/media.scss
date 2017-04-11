@@ -1,0 +1,47 @@
+@mixin xl() {
+	@include media($screen-xl-min, $screen-xl-max) {
+		@content;
+	}
+}
+
+@mixin lg() {
+	@include media($screen-lg-min, $screen-lg-max) {
+		@content;
+	}
+}
+
+@mixin md() {
+	@include media($screen-md-min, $screen-md-max) {
+		@content;
+	}
+}
+
+@mixin sm() {
+	@include media($screen-sm-min, $screen-sm-max) {
+		@content;
+	}
+}
+
+@mixin xs() {
+	@include media($screen-xs-min, $screen-xs-max) {
+		@content;
+	}
+}
+
+@mixin media($min, $max) {
+	@media (min-width: $min) and (max-width: $max) {
+		@content;
+	}
+}
+
+@mixin mediaUp($min) {
+	@media (min-width: $min) {
+		@content;
+	}	
+}
+
+@mixin mediaDown($max) {
+	@media (max-width: $max) {
+		@content;
+	}	
+}

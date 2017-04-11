@@ -1,0 +1,27 @@
+extends layout.pug
+
+block heading
+  h1 Litters
+
+block actions
+  .row
+    .col-xs-12
+      .form-group
+        a.btn.btn-primary(href='/admin/litters/create') Create litter
+
+block content
+  .row 
+    .col-xs-12
+      .list
+        each litter, i in litters
+          .row
+            .col-xs-12.list-item(class=i % 2 == 0 ? 'odd' : 'even')
+              .row
+                .col-xs-3= litter._id
+                .col-xs-6= litter.title
+                .col-xs-1
+                  a(href=`/admin/litters/edit/${litter._id}`)
+                    i.glyphicon.glyphicon-edit
+                .col-xs-1
+                  a(href=`/admin/litters/delete/${litter._id}`)
+                    i.glyphicon.glyphicon-trash

@@ -1,0 +1,66 @@
+$font-family-primary: 'diavlo-black', exljbris;
+$font-weight-bold: 900;
+$font-weight-book: 700;
+$font-weight-medium: 400;
+$font-weight-normal: 300;
+$font-weight-light: 100;
+
+@font-face {
+    font-family: 'diavlo-black';
+    src: url('../fonts/diavlo/diavlo-black.eot');
+    src: url('../fonts/diavlo/diavlo-black.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/diavlo/diavlo-black.woff2') format('woff2'),
+         url('../fonts/diavlo/diavlo-black.woff') format('woff'),
+         url('../fonts/diavlo/diavlo-black.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'diavlo-black';
+    src: url('../fonts/diavlo/diavlo-bold.eot');
+    src: url('../fonts/diavlo/diavlo-bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/diavlo/diavlo-bold.woff2') format('woff2'),
+         url('../fonts/diavlo/diavlo-bold.woff') format('woff'),
+         url('../fonts/diavlo/diavlo-bold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'diavlo-black';
+    src: url('../fonts/diavlo/diavlo-book.eot');
+    src: url('../fonts/diavlo/diavlo-book.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/diavlo/diavlo-book.woff2') format('woff2'),
+         url('../fonts/diavlo/diavlo-book.woff') format('woff'),
+         url('../fonts/diavlo/diavlo-book.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'diavlo-black';
+    src: url('../fonts/diavlo/diavlo-light.eot');
+    src: url('../fonts/diavlo/diavlo-light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/diavlo/diavlo-light.woff2') format('woff2'),
+         url('../fonts/diavlo/diavlo-light.woff') format('woff'),
+         url('../fonts/diavlo/diavlo-light.ttf') format('truetype');
+    font-weight: $font-weight-light;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'diavlo-black';
+    src: url('../fonts/diavlo/diavlo-medium.eot');
+    src: url('../fonts/diavlo/diavlo-medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/diavlo/diavlo-medium.woff2') format('woff2'),
+         url('../fonts/diavlo/diavlo-medium.woff') format('woff'),
+         url('../fonts/diavlo/diavlo-medium.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+
+}

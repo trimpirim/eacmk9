@@ -1,0 +1,32 @@
+.ui-datepicker {
+  border: 1px solid $c-grey-darker;
+  background-color: $c-white;
+}
+
+.ui-datepicker .ui-icon {
+  text-indent: 0;
+}
+
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.ui-datepicker .ui-datepicker-next span {
+  transform: translate3d(0%, -25%, 0);
+}
+
+.ui-datepicker .ui-datepicker-prev span {
+  transform: translate3d(50%, -25%, 0);
+}
+
+.ui-datepicker .ui-datepicker-prev span:after {
+  content: "«";
+}
+
+.ui-datepicker .ui-datepicker-next span:after {
+  content: "»";
+}

@@ -1,0 +1,12 @@
+.scrollable-component {
+    width: 100%;
+    overflow: hidden;
+
+    .scrollable-component-scrollable-element {
+        transition: opacity .25s ease, transform .5s ease;
+    }
+}
+
+.scrollable-content-inner {
+    overflow: hidden;
+}

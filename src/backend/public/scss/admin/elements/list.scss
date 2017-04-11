@@ -1,0 +1,29 @@
+.list,
+.inner {
+  text-align: center;
+  border: 1px solid $c-grey;
+  border-radius: 5px;
+  font-size: 14px;
+
+  .list-header {
+    background-color: $c-grey;
+  }
+
+  .list-item,
+  .list-header {
+    padding: 10px;
+    display: block;
+  }
+
+  &.list-inner {
+    margin-top: 15px;
+  }
+}
+
+.list {
+  .list-item {
+    &:nth-of-type(2n) {
+      background-color: $c-grey;
+    }
+  }
+}

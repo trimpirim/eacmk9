@@ -1,0 +1,31 @@
+.el-close-button {
+  &.el-x-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+
+    &:after,
+    &:before {
+      content: "";
+      height: 40px;
+      width: 5px;
+      background-color: $c-grey-darker;
+      z-index: 10;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 5px;
+    }
+
+    &:after {
+      transform: translateX(50%) rotate(45deg);
+    }
+
+    &:before {
+      transform: translateX(50%) rotate(135deg);
+    }
+  }
+}

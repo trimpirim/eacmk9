@@ -1,0 +1,5 @@
+var Config = {
+	browserSyncProxy: 'http://buy-back-2017.samsung.adf'
+}
+
+module.exports = Config;

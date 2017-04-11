@@ -1,0 +1,13 @@
+a {
+	@extend .l-default;
+	color: $c-black;
+}
+
+.l-default {
+	text-decoration: none;
+	transition: color .5s ease;
+
+	&:hover {
+		text-decoration: none;
+	}
+}

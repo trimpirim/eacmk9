@@ -1,0 +1,28 @@
+$fb-brand-color: #4267b2;
+$fb-brand-color-darker: #365899;
+
+.fb-c-background {
+  background-color: $fb-brand-color;
+}
+
+.fb-c-border {
+  border-color: $fb-brand-color;
+}
+
+.fb-c-background-darker {
+  background-color: $fb-brand-color-darker;
+}
+
+.fb-c-border-darker {
+  border-color: $fb-brand-color-darker;
+}
+
+.btn-facebook {
+  @extend .fb-c-background;
+  @extend .fb-c-border;
+
+  &:hover, &:focus {
+    @extend .fb-c-background-darker;
+    @extend .fb-c-border-darker;
+  }
+}

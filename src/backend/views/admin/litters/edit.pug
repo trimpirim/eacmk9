@@ -1,0 +1,12 @@
+extends layout.pug
+
+block heading
+  h1 Edit litter
+
+block content
+  .row 
+    .col-xs-12.inner
+      .row
+        .col-xs-6
+          form(action=`/admin/litters/edit/${litter._id}`, method='POST')
+            include form.pug

@@ -1,0 +1,89 @@
+@import "fonts";
+
+.t-super-heading {
+	font-size: 80px;
+}
+
+.t-heading {
+	font-size: 8rem;
+	line-height: 1;
+	padding: 3rem 0;
+	margin: 0;
+	font-weight: $font-weight-light;
+}
+
+h2 {
+	&.t-heading {
+		font-size: 4.5rem;
+	}
+}
+
+h3 {
+	&.t-heading {
+		font-size: 3.5rem;
+	}
+}
+
+.t-subheading {
+	font-size: 3rem;
+	line-height: 3rem;
+	padding: 1rem 0;
+	font-weight: $font-weight-light;
+	margin: 0;
+}
+
+.t-paragraph {
+	font-size: 3rem;
+	line-height: 3rem;
+	padding: 0.75rem 0;
+	font-weight: $font-weight-light;
+	margin: 0;
+}
+
+.t-description {
+	@extend .t-subheading;
+}
+
+.t-description-small {
+	@extend .t-description;
+	font-size: 1rem;
+	line-height: 1rem;
+}
+
+.t-small {
+	font-size: 0.75rem;
+}
+
+.t-uppercase {
+	text-transform: uppercase;
+}
+
+.t-center {
+	text-align: center;
+}
+
+.t-bold {
+	font-weight: $font-weight-bold;
+}
+
+.t-title {
+	font-size: 2.5rem;
+	@extend .t-bold;
+}
+
+.t-title-small {
+	@extend .t-title;
+	font-size: 1rem;
+}
+
+.t-left {
+	text-align: left;
+}
+
+.t-right {
+	text-align: right;
+}
+
+.t-center {
+	text-align: center;
+}

@@ -1,0 +1,10 @@
+module.exports = {
+  DATABASE: {
+    USERNAME: 'unicorn',
+    HOSTNAME: 'localhost',
+    //POST: undefined,
+    PASSWORD: 'un1c0rn',
+    DATABASE: 'unicorn'
+  },
+  SESSION_SECRET: 'someoosomsecret'
+}

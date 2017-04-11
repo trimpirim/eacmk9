@@ -1,0 +1,6 @@
+{
+  "ignore": ["src/frontend/*", "public/*"],
+  "execMap": {
+    "js": "node --harmony"
+  }
+}

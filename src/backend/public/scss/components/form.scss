@@ -1,0 +1,145 @@
+@import "colors";
+
+.form-group {
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-left: 0;
+	padding-right: 0;
+	position: relative;
+	margin-bottom: 0px;
+
+	label, input {
+		display: block;
+	}
+
+	label {
+		margin: 5px 0px;
+		padding-left: 0px;
+		margin-bottom: 0px;
+		font-size: 15px;
+		color: $c-first;
+		position: relative;
+		cursor: text;
+
+		transition: top .25s ease;
+
+		&.required {
+			&::after {
+				content: "*";
+			}
+		}
+	}
+
+	input {
+		border-radius: 0;
+		box-shadow: none;
+		padding: 5px 10px;
+		width: 100%;
+		border: 1px solid $c-grey-darker;
+		outline: 0;
+		background-color: $c-grey;
+		transition: border-color .5s ease;
+		font-size: 14px;
+		color: $c-black;
+		&:focus {
+			border-color: $c-grey-darker;
+			outline: 0;
+			box-shadow: none;
+			color: $c-black;
+		}
+	}
+
+	select.select-to-autocomplete {
+		display: none;
+		width: 100%;
+	}
+
+	.chosen-container {
+		width: 100% !important;
+	}
+
+	.checkbox {
+		margin-left: 20px;
+	}
+
+	&.checkbox-inline {
+		.checkbox {
+			display: inline-block;
+		}
+
+		label {
+			padding-right: 30px;
+		}
+	}
+
+	&.radio-inline {
+		.radio {
+			display: inline-block;
+			position: static;
+			width: auto;
+			margin-left: 0px;
+			margin-right: 10px;
+		}
+
+		label {
+			display: inline-block;
+			padding-right: 30px;
+		}
+	}
+
+	&.file-upload, &.collection {
+		.form-group {
+			padding: 10px 0 20px;
+		}
+
+		.embedded-form-child {
+			margin-top: 0px;
+			position: relative;
+		}
+	}
+
+	&.collection {
+		.embedded-form-children-wrapper {
+			margin-top: 5px;
+		}
+
+		.embedded-form-add-child {
+			color: $c-first;
+		}
+
+		.embedded-form-remove-child {
+			color: $c-first;
+			position: absolute;
+			top: 5px;
+			right: 0;
+		}
+	}
+
+	.help-block {
+		position: absolute;
+		margin: 0px;
+		font-size: 13px;
+		color: $c-negative;
+
+		.list-unstyled {
+			list-style: none;
+			padding-left: 0;
+			margin: 0;
+
+			.glyphicon {
+				display: none;
+			}
+		}
+	}
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px $c-grey inset;
+}
+
+input:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px $c-grey inset;
+}
+
+@import "datepicker";

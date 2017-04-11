@@ -1,0 +1,10 @@
+.form-group
+  label.control-label
+  input.form-control(type='text', name='title', value=`${litter.title}`)
+.row
+  .col-xs-2
+    .form-group
+      button.btn.btn-primary(type='submit') Save
+  .col-xs-2
+    .form-group
+      a.btn.btn-primary(href='/admin/litters/list') Cancel

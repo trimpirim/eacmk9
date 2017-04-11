@@ -1,0 +1,54 @@
+$c-first: #fffafa; 
+$c-first-lighter: lighten($c-first, 15%);
+$c-first-darker: darken($c-first, 15%);
+$c-second: #bb8282; 
+$c-second-lighter: lighten($c-second, 15%);
+$c-second-darker: darken($c-second, 15%);
+$c-third: #5d4d48; 
+$c-third-lighter: lighten($c-third, 15%);
+$c-third-darker: darken($c-third, 15%);
+$c-forth: #FF9009; 
+$c-forth-lighter: lighten($c-forth, 15%);
+$c-forth-darker: darken($c-forth, 15%);
+$c-fifth: #67BCDB; 
+$c-fifth-lighter: lighten($c-fifth, 15%);
+$c-fifth-darker: darken($c-fifth, 15%);
+
+$c-positive: #bef2df;
+$c-positive-lighter: lighten($c-positive, 5%);
+$c-positive-darker: darken($c-positive, 5%);
+$c-negative: #ff7234;
+$c-neutral: #fff7be;
+
+$c-black: #000;
+$c-black-5p: #1f1f1f;
+$c-black-20p: #454545;
+$c-black-50p: #747474;
+
+$c-grey: #f5f5f5;
+$c-grey-lighter: lighten($c-grey, 10%);
+$c-grey-darker: darken($c-grey, 10%);
+
+
+$c-white: #fff;
+
+$c-pastel-pink: #fff3f3;
+$c-pastel-blue: #f2f5ff;
+$c-pastel-green: #f2fff6;
+$c-pastel-red: #ffe2e2;
+
+.c-background-pink {
+    background-color: $c-pastel-pink;
+}
+
+.c-background-blue {
+    background-color: $c-pastel-blue;
+}
+
+.c-background-green {
+    background-color: $c-pastel-green;
+}
+
+.c-background-red {
+    background-color: $c-pastel-red;
+}

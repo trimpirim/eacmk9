@@ -1,0 +1,9 @@
+@mixin increasingAnimationDelay($start, $byDelay, $count) {
+    $currentDelay: $start;
+    @for $i from 1 through $count {
+        &:nth-child(#{$i}) {
+            transition-delay: #{$currentDelay + 's'};
+        }
+        $currentDelay: $currentDelay + $byDelay;
+    }
+}
