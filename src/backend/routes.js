@@ -3,12 +3,13 @@ var path = require('path')
     api = require('./routes/api'),
     mocks = require('./routes/mocks'),
     admin = require('./routes/admin'),
+    images = require('./routes/images');
 
 module.exports = {
   mocks: mocks,
   api: api,
   admin: admin,
-  // images: images,
+  images: images,
   any: function(req, res) {
     res.sendFile(path.resolve(req.pathOfRoot, 'index.html'));
   }

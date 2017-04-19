@@ -1,0 +1,13 @@
+.form-group
+  label.control-label
+  input.form-control(type='file', name='content')
+.form-group
+  label.control-label
+  input.form-control(type='text', name='title' value=`${dogImage.title}`)
+.row
+  .col-xs-2
+    .form-group
+      button.btn.btn-primary(type='submit') Save
+  .col-xs-2
+    .form-group
+      a.btn.btn-primary(href=`/admin/dogs/edit/${dog._id}`) Cancel

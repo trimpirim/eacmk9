@@ -3,27 +3,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-6">
-          <div class="js-slick-slider">
-            <div class="slider-item">
-              <img class="responsive" src="img/FB_IMG_1490587265409.jpg" width="500" height="auto" />
-            </div>
-            <div class="slider-item">
-              <img class="responsive" src="img/FB_IMG_1490587265409.jpg" width="500" height="auto" />
-            </div>
-            <div class="slider-item">
-              <img class="responsive" src="img/FB_IMG_1490587265409.jpg" width="500" height="auto" />
+          <div class="js-slick-slider" v-if="dog">
+            <div class="slider-item" v-for="image in dog.images">
+              <img class="responsive" :src="'/images/display?image=' + image.content" width="500" height="auto" />
             </div>
           </div>
         </div> 
-
         <div class="col-xs-6">
           <div class="col-describe">
             <ul class="describe">
-              <li class="name">NAME: D’Nemesis
+              <li class="name">NAME: {{ dog.title }}
               </li>
               <li>
                 <p class="describe-paragraph">
-                  BIO:  Lorem ipsum dolor sit amet yawn bird seed furry. Mittens park foot meow play bark play tuxedo wet nose field chirp walk cockatiel teeth field cockatiel. Throw commands litter foot smooshy pet food heel bedding tabby paws sit pet food bedding heel dog catch play dead running stay. String throw whiskers lazy dog run fast string feeder catch water dog. Right Paw brush harness vitamins ferret aquarium Scooby snacks fur chow.
+                  {{ dog.bio }}
                 </p>
               </li>
             </ul>
@@ -36,12 +29,24 @@
 
 <script>
   const OurDog = {
-    mounted: function() {
-      $('.js-slick-slider').slick({
-        arrows: false,
-        slidesToShow: 1
-      });
+    data: function() {
+      return {
+        dog: {}
+      }
     },
+    created() {
+      this.$http.get('/api/dogs/' + this.$route.params.dog).then(response => {
+        response.json().then(json => {
+          this.dog = json
+          $('.js-slick-slider').slick({
+            arrows: false,
+            slidesToShow: 1
+          })
+        })
+      }, error => {
+
+      })
+    }
   }
 
   export default OurDog

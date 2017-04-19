@@ -17,27 +17,11 @@
           UPCOMING LITTERS<b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li class="drop-text"> 
-            <router-link :to="{name: 'upcoming-litters', params: {littersName: '2017-nemesis-x-haras-van-acros'}}">
-              2017<br> 
-              Nemesis x Haras Van Acros
+          <li v-for="litter in litters">
+            <router-link :to="{name: 'upcoming-litters', params: {id: litter._id}}">
+              {{ litter.title }}
             </router-link>
           </li>
-          <li>
-            <router-link to="/litters/2018-nemesis-x-isa-x">
-              2018<br> 
-              Nemesis x <br />
-              Isa x
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/litters/2019-nemesis-x-isa-x">
-              2019<br> 
-              Nemesis x <br />
-              Isa x
-            </router-link>
-          </li>
-
         </ul>
       </li>
     </ul>
@@ -53,6 +37,19 @@
 
 <script>
 export default {
+  data() {
+    return {
+      litters: []
+    }
+  },
+  created() {
+    this.$http.get('/api/litters').then(response => {
+      response.json().then(json => {
+        this.litters = json
+      })
+    }, error => {
 
+    })
+  }
 }
 </script>

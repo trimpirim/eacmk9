@@ -16,7 +16,7 @@
           <div class="dog-list">
             <ul class="dog-name" v-for="dog in dogs">
               <li>
-                <router-link :to="{name: 'our-dog', params: {dog: dog.id}}">{{ dog.name }}</router-link>
+                <router-link :to="{name: 'our-dog', params: {dog: dog._id}}">{{ dog.title }}</router-link>
               </li>
             </ul>
           </div>
@@ -35,12 +35,17 @@
     name: 'our-dogs',
     data: function() {
       return {
-        dogs: [
-          {name: 'D’Nemesis', id: 1},
-          {name: 'Deimos', id: 2},
-          {name: 'Isa', id: 3},
-        ]
+        dogs: []
       }
+    },
+    created() {
+      this.$http.get('/api/dogs').then(response => {
+        response.json().then(json => {
+          this.dogs = json
+        })
+      }, error => {
+
+      })
     }
   }
 

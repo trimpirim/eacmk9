@@ -48,6 +48,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/images', routes.images);
 app.use('/api', routes.api);
 app.use('/mocks', routes.mocks);
 app.use('/admin', routes.admin(passport));

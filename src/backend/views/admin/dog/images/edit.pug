@@ -1,0 +1,16 @@
+extends layout.pug
+
+block heading
+  h1 Edit image
+
+block content
+  .row 
+    .col-xs-12.inner
+      .row
+        .col-xs-6
+          form(action=`/admin/images/dog/${dog._id}/edit/${dogImage._id}`, method='POST', encType='multipart/form-data')
+            include form.pug
+        if (imageContent.content)
+          .col-xs-6
+            .el-close-button.el-x-close-button
+            img.img-responsive.s-1x-padding-top-bottom(src=`data:${imageContent.contentType};base64,${imageContent.content.toString('base64')}`)

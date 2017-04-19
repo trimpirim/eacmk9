@@ -2,6 +2,8 @@ var express = require('express');
 var admin = express.Router();
 var fs = require('fs');
 var littersRouter = require('./admin/litters');
+var dogsRouter = require('./admin/dogs');
+var adminImagesRouter = require('./admin/images');
 
 var routes = function(passport) {
   admin.route('/')
@@ -20,6 +22,8 @@ var routes = function(passport) {
     }));
 
   admin.use('/litters', littersRouter(logged));
+  admin.use('/dog', dogsRouter(logged));
+  admin.use('/images', adminImagesRouter(logged));
 
   function logged(req, res, next) {
     if (req.isAuthenticated()) 

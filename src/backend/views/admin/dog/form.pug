@@ -1,0 +1,13 @@
+.form-group
+  label.control-label
+  input.form-control(type='text', name='title', value=`${dog.title}`)
+.form-group
+  label.control-label
+  textarea.form-control.js-ckeditor-replace(name='bio', id='dog-bio', data-upload-url=`/admin/images/upload?type=dog-bio&related-object=${dog._id}`)= dog.bio
+.row
+  .col-xs-2
+    .form-group
+      button.btn.btn-primary(type='submit') Saugoti
+  .col-xs-2
+    .form-group
+      a.btn.btn-primary(href='/admin/dog/list') Atšaukti
