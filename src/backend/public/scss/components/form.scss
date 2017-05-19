@@ -18,9 +18,10 @@
 		padding-left: 0px;
 		margin-bottom: 0px;
 		font-size: 15px;
-		color: $c-first;
+		color: $c-black;
 		position: relative;
 		cursor: text;
+		text-align: left;
 
 		transition: top .25s ease;
 
@@ -131,6 +132,15 @@
 				display: none;
 			}
 		}
+	}
+
+	.error {
+    text-align: left;
+    font-size: 12px;
+    margin-top: 3px;
+    position: absolute;
+    color: red;
+    text-transform: uppercase;
 	}
 }
 

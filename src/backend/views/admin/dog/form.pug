@@ -1,13 +1,63 @@
+include ../../form-helpers/select.pug
+
 .form-group
-  label.control-label
-  input.form-control(type='text', name='title', value=`${dog.title}`)
+  label.control-label #{__('admin.dogs.name')}
+  input.form-control(type='text', name='name', value=`${dog.name}`)
+  if form && form.getErrors('name').length > 0
+    div.error= __(form.getErrors('name')[0])
 .form-group
-  label.control-label
+  label.control-label #{__('admin.dogs.date_of_birth')}
+  input.form-control.js-datepicker(type='text', name='dateOfBirth', value=`${moment(dog.dateOfBirth).format("YYYY/MM/DD")}`)
+  if form && form.getErrors('dateOfBirth').length > 0
+    div.error= __(form.getErrors('dateOfBirth')[0])
+.form-group
+  label.control-label #{__('admin.dogs.color')}
+  input.form-control(type='text', name='color', value=`${dog.color}`)
+  if form && form.getErrors('color').length > 0
+    div.error= __(form.getErrors('color')[0])
+.form-group
+  label.control-label #{__('admin.dogs.available')}
+  input.form-control(type='checkbox', name='available', value=`${dog.available}`)
+  if form && form.getErrors('available').length > 0
+    div.error= __(form.getErrors('available')[0])
+.form-group
+  +select(`${__('admin.dogs.discipline')}`, 'discipline', dogDisciplines.map(function(object) { return {value: object.id, title: object.title, selected: object.id == dog.discipline}}), {value: '', title: __('admin.dogs.discipline.select')})
+  if form && form.getErrors('discipline').length > 0
+    div.error= __(form.getErrors('discipline')[0])
+.form-group
+  +select(`${__('admin.dogs.gender')}`, 'gender', [{title: __('admin.dogs.gender.male'), value: dogGenders.MALE, selected: dogGenders.MALE == dog.gender}, {title: __('admin.dogs.gender.female'), value: dogGenders.FEMALE, selected: dogGenders.FEMALE == dog.gender}], {value: '', title: __('admin.dogs.gender.select')})
+  if form && form.getErrors('gender').length > 0
+    div.error= __(form.getErrors('gender')[0])
+.form-group
+  +select(`${__('admin.dogs.sire')}`, 'sire', dogs.map(function(object) { return {value: object._id, title: object.name, selected: object.id == dog.sire}}), {value: '', title: __('admin.dogs.sire.select')})
+  if form && form.getErrors('sire').length > 0
+    div.error= __(form.getErrors('sire')[0])
+.form-group
+  +select(`${__('admin.dogs.dam')}`, 'dam', dogs.map(function(object) { return {value: object._id, title: object.name, selected: object.id == dog.dam}}), {value: '', title: __('admin.dogs.dam.select')})
+  if form && form.getErrors('dam').length > 0
+    div.error= __(form.getErrors('dam')[0])
+.form-group
+  label.control-label #{__('admin.dogs.puppy')}
+  input.form-control.js-checkbox-collapse(type='checkbox', name='puppy', checked=dog.puppy, value='1', data-toggle='collapse', data-target='#puppy-information')
+div.collapse(id="puppy-information")
+  .form-group
+    +select(`${__('admin.dogs.litter')}`, 'litter', litters.map(function(object) { return {value: object._id, title: object.name, selected: object.id == dog.litter}}), {value: '', title: __('admin.dogs.litter.select')})
+    if form && form.getErrors('litter').length > 0
+      div.error= __(form.getErrors('litter')[0])
+  .form-group
+    label.control-label #{__('admin.dogs.evaluation')}
+    textarea.form-control.js-ckeditor-replace(name='evaluation', id='dog-evaluation', data-upload-url=`/admin/images/upload?type=dog-evaluation&related-object=${dog._id}`)= dog.evaluation
+    if form && form.getErrors('evaluation').length > 0
+      div.error= __(form.getErrors('evaluation')[0])
+.form-group
+  label.control-label #{__('admin.dogs.bio')}
   textarea.form-control.js-ckeditor-replace(name='bio', id='dog-bio', data-upload-url=`/admin/images/upload?type=dog-bio&related-object=${dog._id}`)= dog.bio
+  if form && form.getErrors('bio').length > 0
+    div.error= __(form.getErrors('bio')[0])
 .row
   .col-xs-2
     .form-group
-      button.btn.btn-primary(type='submit') Saugoti
+      button.btn.btn-primary(type='submit') #{__('admin.actions.save')}
   .col-xs-2
     .form-group
-      a.btn.btn-primary(href='/admin/dog/list') Atšaukti
+      a.btn.btn-primary(href='/admin/dog/list') #{__('admin.actions.cancel')}

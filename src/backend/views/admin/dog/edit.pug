@@ -1,7 +1,7 @@
 extends layout.pug
 
 block heading
-  h1 Edit dog
+  h1 #{__('admin.dogs.edit')}
 
 block content
   .row 
@@ -12,3 +12,6 @@ block content
             include form.pug
         .col-xs-6
           include images.pug
+        if !dog.puppy
+          .col-xs-6
+            include awards.pug

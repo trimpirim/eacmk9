@@ -1,15 +1,15 @@
 // grab the things we need
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var ObjectId = Schema.ObjectId;
-var SchemaHelper = require('../helpers/schema-helper');
+const mongoose = require('mongoose'),
+      Schema = mongoose.Schema,
+      ObjectId = Schema.ObjectId,
+      SchemaHelper = require('../helpers/schema-helper')
 
-var schemaOfLitter = new Schema({
-  title: SchemaHelper.withDefault(String, ''),
+const schemaOfLitter = new Schema({
+  name: SchemaHelper.withDefault(String, ''),
   createdAt: SchemaHelper.withDefault(Date, Date.now),
   updatedAt: Date
-});
+})
 
-var Litter = mongoose.model('Litter', schemaOfLitter);
+const Litter = mongoose.model('Litter', schemaOfLitter)
 
-module.exports = Litter;
+module.exports = Litter

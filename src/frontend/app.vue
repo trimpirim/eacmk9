@@ -17,9 +17,9 @@
           UPCOMING LITTERS<b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li v-for="litter in litters">
-            <router-link :to="{name: 'upcoming-litters', params: {id: litter._id}}">
-              {{ litter.title }}
+          <li v-for="litter in filteredLitters">
+            <router-link :to="{name: 'puppy', params: {id: litter.firstPuppy._id}}">
+              {{ litter.name }}
             </router-link>
           </li>
         </ul>
@@ -39,13 +39,23 @@
 export default {
   data() {
     return {
-      litters: []
+      litters: [],
+      filteredLitters: []
     }
   },
   created() {
     this.$http.get('/api/litters').then(response => {
       response.json().then(json => {
-        this.litters = json
+        this.litters = json.filter(item => {
+          return item.puppies.length > 0
+        })
+
+        this.filteredLitters = this.litters.filter(litter => {
+          return litter.puppies.length > 0 && litter.puppies[0]
+        }).map(litter => {
+          litter.firstPuppy = litter.puppies[0]
+          return litter
+        })
       })
     }, error => {
 

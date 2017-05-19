@@ -1,0 +1,10 @@
+mixin select(label, name, options, emptyOption)
+  label.control-label= label
+  select.form-control(name=`${name}`)
+    if emptyOption
+      option(value=emptyOption.value || '')= emptyOption.title
+    each option, i in options
+      if option.selected
+        option(value=`${option.value}` selected)= option.title
+      else 
+        option(value=`${option.value}`)= option.title

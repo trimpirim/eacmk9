@@ -3,6 +3,7 @@ html
     title 
       block title
     link(rel='stylesheet', href='/js/vendors/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/js/vendors/jquery-datepicker/jquery-ui-datepicker.min.css')
     link(rel='stylesheet', href='/css/admin.css')
   body
     block header
@@ -15,9 +16,13 @@ html
         .col-xs-2.actions
           block actions
         .col-xs-12
+          block filter
+        .col-xs-12
           block content
 
     block scripts
       script(src='/js/vendors/jquery/dist/jquery.min.js')
+      script(src='/js/vendors/jquery-datepicker/jquery-ui-datepicker.min.js')
+      script(src='/js/vendors/bootstrap/dist/js/bootstrap.min.js')
       script(src='/js/vendors/ckeditor/ckeditor.js')
       script(src='/js/admin/bundle.js')

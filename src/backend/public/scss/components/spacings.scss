@@ -1,0 +1,68 @@
+@import "components/media";
+
+@mixin margin($side, $count) {
+    @for $i from $count through 0 {
+        .s-#{$i}x-margin-#{$side}-xs,
+        .s-#{$i}x-margin-#{$side} {
+            margin-#{$side}: #{$i * 10}px;
+        }
+
+        @include mediaUp($screen-sm-min) {
+            .s-#{$i}x-margin-#{$side}-sm {
+                margin-#{$side}: #{$i * 10}px;
+            }
+        }
+
+        @include mediaUp($screen-md-min) {
+            .s-#{$i}x-margin-#{$side}-md {
+                margin-#{$side}: #{$i * 10}px;
+            }
+        }
+
+        @include mediaUp($screen-lg-min) {
+            .s-#{$i}x-margin-#{$side}-lg {
+                margin-#{$side}: #{$i * 10}px;
+            }
+        }
+
+        @include mediaUp($screen-xl-min) {
+            .s-#{$i}x-margin-#{$side}-xl {
+                margin-#{$side}: #{$i * 10}px;
+            }
+        }
+
+        .s-#{$i}x-margin-#{$side}-vh-xs,
+        .s-#{$i}x-margin-#{$side}-vh {
+            margin-#{$side}: #{$i * 3}vh;
+        }
+
+        @include mediaUp($screen-sm-min) {
+            .s-#{$i}x-margin-#{$side}-vh-sm {
+                margin-#{$side}: #{$i * 3}vh;
+            }
+        }
+
+        @include mediaUp($screen-md-min) {
+            .s-#{$i}x-margin-#{$side}-vh-md {
+                margin-#{$side}: #{$i * 3}vh;
+            }
+        }
+
+        @include mediaUp($screen-lg-min) {
+            .s-#{$i}x-margin-#{$side}-vh-lg {
+                margin-#{$side}: #{$i * 3}vh;
+            }
+        }
+
+        @include mediaUp($screen-xl-min) {
+            .s-#{$i}x-margin-#{$side}-vh-xl {
+                margin-#{$side}: #{$i * 3}vh;
+            }
+        }
+    }
+}
+
+@include margin('left', 4);
+@include margin('right', 4);
+@include margin('top', 4);
+@include margin('bottom', 4);

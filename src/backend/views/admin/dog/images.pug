@@ -3,7 +3,7 @@
     .list.list-inner
       .row
         .col-xs-12
-          .list-header List of images
+          .list-header #{__('admin.dogs.images')}
       each image in dog.images
         .row
           .col-xs-12
@@ -11,17 +11,17 @@
               .row
                 .col-xs-10.t-left= image.title
                 .col-xs-1
-                  a(href=`/admin/images/dog/${dog._id}/edit/${image._id}`)
+                  a(href=`/admin/dog/images/${dog._id}/edit/${image._id}`)
                     i.glyphicon.glyphicon-edit
                 .col-xs-1
-                  a(href=`/admin/images/dog/${dog._id}/delete/${image._id}`)
+                  a(href=`/admin/dog/images/${dog._id}/delete/${image._id}`)
                     i.glyphicon.glyphicon-trash
 
       else
         .row
           .col-xs-12
-            .list-item No images
+            .list-item #{__('admin.dogs.images.no_images')}
       .row
         .col-xs-12
           .list-item.clearfix
-            a.btn.btn-primary.pull-right(href=`/admin/images/dog/${dog._id}/add`) Add images
+            a.btn.btn-primary.pull-right(href=`/admin/dog/images/${dog._id}/add`) #{__('admin.dogs.images.add')}

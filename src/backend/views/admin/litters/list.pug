@@ -1,13 +1,13 @@
 extends layout.pug
 
 block heading
-  h1 Litters
+  h1 #{__('admin.litters.heading')}
 
 block actions
   .row
     .col-xs-12
       .form-group
-        a.btn.btn-primary(href='/admin/litters/create') Create litter
+        a.btn.btn-primary(href='/admin/litters/create') #{__('admin.litters.add')}
 
 block content
   .row 
@@ -18,10 +18,13 @@ block content
             .col-xs-12.list-item(class=i % 2 == 0 ? 'odd' : 'even')
               .row
                 .col-xs-3= litter._id
-                .col-xs-6= litter.title
+                .col-xs-6= litter.name
                 .col-xs-1
                   a(href=`/admin/litters/edit/${litter._id}`)
                     i.glyphicon.glyphicon-edit
                 .col-xs-1
                   a(href=`/admin/litters/delete/${litter._id}`)
                     i.glyphicon.glyphicon-trash
+        else
+          .row
+            .col-xs-12.list-item #{__('admin.litters.no_litters')}

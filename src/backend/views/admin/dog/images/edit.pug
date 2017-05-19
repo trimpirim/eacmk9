@@ -1,14 +1,14 @@
 extends layout.pug
 
 block heading
-  h1 Edit image
+  h1 #{__('admin.dogs.image.edit')}
 
 block content
   .row 
     .col-xs-12.inner
       .row
         .col-xs-6
-          form(action=`/admin/images/dog/${dog._id}/edit/${dogImage._id}`, method='POST', encType='multipart/form-data')
+          form(action=`/admin/dog/images/${dog._id}/edit/${image._id}`, method='POST', encType='multipart/form-data')
             include form.pug
         if (imageContent.content)
           .col-xs-6

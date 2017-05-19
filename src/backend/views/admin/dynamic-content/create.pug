@@ -1,0 +1,13 @@
+extends layout.pug
+
+block heading
+  h1 #{__('admin.dynamic_content.add')}
+
+block content
+  .row 
+    .col-xs-12.inner
+      .row
+        .col-xs-6
+          form(action=`/admin/dynamic-content/create?which=${which}`, method='POST')
+            include form.pug
+        .col-xs-6

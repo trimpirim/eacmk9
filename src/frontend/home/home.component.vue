@@ -2,12 +2,9 @@
   <div class="vue-template-wrapper">
     <div class="container-fluid cont-about">
       <div class="row">
-        <div class="col-xs-12">
-          <h1 class="about-mission"> ABOUT / MISSION </h1>
-          <p class="about-text">
-            EACM K-9 is a multi-faceted K-9 training, and breeding operation with an emphasis on producing single and dual purpose explosives detection and protection K-9’s. We produce green dogs as well as fully trained K-9s ready to be deployed in a law enforcement, military and security capacities
-            Our K-9’s are started from a very young age with a solid foudation built on socialization, confidence development and exposure to a wide range of environment stimulation in the form of scents, sounds and sights intended to make them confidence from the start of their training0.
-          </p>
+        <div class="col-xs-12" v-if="content.about">
+          <h1 class="about-mission" v-html="content.about.title"></h1>
+          <p class="about-text" v-html="content.about.content"></p>
         </div>
       </div>
     </div>
@@ -22,10 +19,9 @@
           </p>
         </div>
 
-        <div class="col-xs-6">
-          <h2 class="info-header">Breeding</h2>
-          <p class="info-text">
-            At EACM K9, we have diligently worked to source exceptional belgian malinois who are sound in confirmation, working ability, possess exceptional drives and social. Balanced dogs are the cornerstone of our breeding program. Regardless of whether our dogs are purposed for work in sport protection, law enforcement or high risk conflict zones, we understand the importance of producing well balanced dogs who adapt to a wide range of environments.
+        <div class="col-xs-6" v-if="content.breeding">
+          <h2 class="info-header" v-html="content.breeding.title"></h2>
+          <p class="info-text" v-html="content.breeding.content">
           </p>
         </div>
       </div>
@@ -35,6 +31,24 @@
 
 <script>
   const Home = {
+    data: function() {
+      return {
+        content: {
+          about: null,
+          training: null,
+          breeding: null
+        }
+      }
+    },
+    created() {
+      this.$http.get('/api/dynamic-content/list').then(response => {
+        response.json().then(json => {
+          this.content = json
+        })
+      }, error => {
+
+      })
+    }
   }
 
   export default Home

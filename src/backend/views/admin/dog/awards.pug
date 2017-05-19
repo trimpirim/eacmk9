@@ -1,0 +1,27 @@
+.row
+  .col-xs-12
+    .list.list-inner
+      .row
+        .col-xs-12
+          .list-header #{__('admin.dogs.awards')}
+      each award in dog.awards
+        .row
+          .col-xs-12
+            .list-item
+              .row
+                .col-xs-10.t-left= award.title
+                .col-xs-1
+                  a(href=`/admin/dog/awards/${dog._id}/edit/${award._id}`)
+                    i.glyphicon.glyphicon-edit
+                .col-xs-1
+                  a(href=`/admin/dog/awards/${dog._id}/delete/${award._id}`)
+                    i.glyphicon.glyphicon-trash
+
+      else
+        .row
+          .col-xs-12
+            .list-item #{__('admin.dogs.awards.no_awards')}
+      .row
+        .col-xs-12
+          .list-item.clearfix
+            a.btn.btn-primary.pull-right(href=`/admin/dog/awards/${dog._id}/add`) #{__('admin.dogs.awards.add')}

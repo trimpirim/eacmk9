@@ -74,9 +74,9 @@
 
 	var _homeComponent2 = _interopRequireDefault(_homeComponent);
 
-	var _littersComponent = __webpack_require__(19);
+	var _puppyComponent = __webpack_require__(19);
 
-	var _littersComponent2 = _interopRequireDefault(_littersComponent);
+	var _puppyComponent2 = _interopRequireDefault(_puppyComponent);
 
 	var _servicesComponent = __webpack_require__(22);
 
@@ -87,7 +87,7 @@
 	_vue2.default.use(_vueRouter2.default);
 	_vue2.default.use(_vueResource2.default);
 
-	var routes = [{ path: '/our-dogs', name: 'our-dogs', component: _ourDogsComponent2.default }, { path: '/home', name: 'home', component: _homeComponent2.default }, { path: '/upcoming-litters/:id', name: 'upcoming-litters', component: _littersComponent2.default }, { path: '/our-dog/:dog', name: 'our-dog', component: _ourDogComponent2.default }, { path: '/services', name: 'services', component: _servicesComponent2.default }];
+	var routes = [{ path: '/our-dogs', name: 'our-dogs', component: _ourDogsComponent2.default }, { path: '/home', name: 'home', component: _homeComponent2.default }, { path: '/puppy/:id', name: 'puppy', component: _puppyComponent2.default }, { path: '/our-dog/:dog', name: 'our-dog', component: _ourDogComponent2.default }, { path: '/services', name: 'services', component: _servicesComponent2.default }];
 
 	var router = new _vueRouter2.default({
 	  routes: routes,
@@ -7266,7 +7266,8 @@
 	exports.default = {
 	  data: function data() {
 	    return {
-	      litters: []
+	      litters: [],
+	      filteredLitters: []
 	    };
 	  },
 	  created: function created() {
@@ -7274,7 +7275,16 @@
 
 	    this.$http.get('/api/litters').then(function (response) {
 	      response.json().then(function (json) {
-	        _this.litters = json;
+	        _this.litters = json.filter(function (item) {
+	          return item.puppies.length > 0;
+	        });
+
+	        _this.filteredLitters = _this.litters.filter(function (litter) {
+	          return litter.puppies.length > 0 && litter.puppies[0];
+	        }).map(function (litter) {
+	          litter.firstPuppy = litter.puppies[0];
+	          return litter;
+	        });
 	      });
 	    }, function (error) {});
 	  }
@@ -7311,17 +7321,17 @@
 	    staticClass: "dropdown"
 	  }, [_vm._m(0), _vm._v(" "), _c('ul', {
 	    staticClass: "dropdown-menu"
-	  }, _vm._l((_vm.litters), function(litter) {
+	  }, _vm._l((_vm.filteredLitters), function(litter) {
 	    return _c('li', [_c('router-link', {
 	      attrs: {
 	        "to": {
-	          name: 'upcoming-litters',
+	          name: 'puppy',
 	          params: {
-	            id: litter._id
+	            id: litter.firstPuppy._id
 	          }
 	        }
 	      }
-	    }, [_vm._v("\n              " + _vm._s(litter.title) + "\n            ")])], 1)
+	    }, [_vm._v("\n              " + _vm._s(litter.name) + "\n            ")])], 1)
 	  }))])])]), _vm._v(" "), _c('router-view'), _vm._v(" "), _vm._m(1)], 1)
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('a', {
@@ -11395,6 +11405,112 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	var OurDogs = {
 	  name: 'our-dogs',
@@ -11406,7 +11522,7 @@
 	  created: function created() {
 	    var _this = this;
 
-	    this.$http.get('/api/dogs').then(function (response) {
+	    this.$http.get('/api/dogs?puppy=false').then(function (response) {
 	      response.json().then(function (json) {
 	        _this.dogs = json;
 	      });
@@ -11428,9 +11544,7 @@
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
-	    staticClass: "col-xs-2"
-	  }), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-8"
+	    staticClass: "col-xs-6"
 	  }, [_c('div', {
 	    staticClass: "dog-list"
 	  }, _vm._l((_vm.dogs), function(dog) {
@@ -11445,20 +11559,259 @@
 	          }
 	        }
 	      }
-	    }, [_vm._v(_vm._s(dog.title))])], 1)])
-	  }))]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-2"
-	  })])])])
+	    }, [_vm._v(_vm._s(dog.name))])], 1)])
+	  }))]), _vm._v(" "), _vm._m(1)])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "container-fluid"
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
-	    staticClass: "col-xs-12"
+	    staticClass: "col-xs-6"
 	  }, [_c('h3', {
-	    staticClass: "kratos"
-	  }, [_vm._v("KRATOS")])])])])
+	    staticClass: "our-dogs-h"
+	  }, [_vm._v("Our Dogs")])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6"
+	  }, [_c('h3', [_vm._v("Search Dogs/ Puppies")])])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "row row-search"
+	  }, [_c('div', {
+	    staticClass: "col-xs-6"
+	  }, [_c('div', {
+	    staticClass: "col-xs-4"
+	  }, [_c('ul', {
+	    staticClass: "first-line"
+	  }, [_c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Sire"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Dam"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Year"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-4"
+	  }, [_c('ul', {
+	    staticClass: "second-line"
+	  }, [_c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Discipline"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Gender"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Color"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-4"
+	  }, [_c('ul', {
+	    staticClass: "third-line"
+	  }, [_c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Title"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Certification"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "dropdown-search"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary dropdown-toggle",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "dropdown"
+	    }
+	  }, [_vm._v("\n                  Age"), _c('span', {
+	    staticClass: "caret"
+	  })]), _vm._v(" "), _c('ul', {
+	    staticClass: "dropdown-menu"
+	  }, [_c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("HTML")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("CSS")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_vm._v("JavaScript")])])])])])])]), _vm._v(" "), _c('img', {
+	    staticClass: "search-icon",
+	    attrs: {
+	      "src": "img/research.png"
+	    }
+	  })])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -11540,11 +11893,39 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	var OurDog = {
 	  data: function data() {
 	    return {
-	      dog: {}
+	      dog: {
+	        awards: [],
+	        images: []
+	      }
 	    };
 	  },
 	  created: function created() {
@@ -11553,10 +11934,6 @@
 	    this.$http.get('/api/dogs/' + this.$route.params.dog).then(function (response) {
 	      response.json().then(function (json) {
 	        _this.dog = json;
-	        $('.js-slick-slider').slick({
-	          arrows: false,
-	          slidesToShow: 1
-	        });
 	      });
 	    }, function (error) {});
 	  }
@@ -11577,31 +11954,130 @@
 	    staticClass: "row"
 	  }, [_c('div', {
 	    staticClass: "col-xs-6"
-	  }, [(_vm.dog) ? _c('div', {
-	    staticClass: "js-slick-slider"
+	  }, [(_vm.dog.images.length > 0) ? _c('div', [_c('img', {
+	    staticClass: "responsive",
+	    staticStyle: {
+	      "display": "block",
+	      "margin": "0 auto"
+	    },
+	    attrs: {
+	      "src": '/images/display?image=' + _vm.dog.images[0].content,
+	      "width": "500",
+	      "height": "auto"
+	    }
+	  }), _vm._v(" "), _c('div', {
+	    staticClass: "row row-dog-photos"
 	  }, _vm._l((_vm.dog.images), function(image) {
 	    return _c('div', {
-	      staticClass: "slider-item"
+	      staticClass: "col-xs-3"
 	    }, [_c('img', {
-	      staticClass: "responsive",
+	      staticClass: "img-pup",
+	      staticStyle: {
+	        "cursor": "pointer"
+	      },
 	      attrs: {
 	        "src": '/images/display?image=' + image.content,
-	        "width": "500",
-	        "height": "auto"
+	        "onclick": "showImage('img/Puppy1.jpg');"
 	      }
 	    })])
-	  })) : _vm._e()]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
+	  }))]) : _vm._e(), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6",
+	    staticStyle: {
+	      "border-left": "1px solid white",
+	      "min-height": "600px"
+	    }
 	  }, [_c('div', {
 	    staticClass: "col-describe"
 	  }, [_c('ul', {
 	    staticClass: "describe"
-	  }, [_c('li', {
+	  }, [_vm._m(1), _vm._v(" "), _c('li', [_c('p', {
+	    staticClass: "describe-paragraph",
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.dog.bio)
+	    }
+	  })])])]), _vm._v(" "), _c('div', {
+	    staticClass: "titles-certifications"
+	  }, [_c('h4', {
+	    staticStyle: {
+	      "margin-bottom": "20px",
+	      "margin-top": "50px"
+	    }
+	  }, [_c('strong', {
+	    staticStyle: {
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_vm._v("Titles/ Certifications:")]), _vm._v(" "), _c('ul', {
+	    staticClass: "ul-titles"
+	  }, _vm._l((_vm.dog.awards), function(award) {
+	    return _c('li', {
+	      staticClass: "li-titles",
+	      domProps: {
+	        "innerHTML": _vm._s(award.title)
+	      }
+	    })
+	  }))])])])])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "planned-breedings"
+	  }, [_c('h4', {
+	    staticStyle: {
+	      "margin-bottom": "20px",
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_c('strong', [_vm._v("Planned Breedings")])]), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
+	    attrs: {
+	      "href": ""
+	    }
+	  }, [_c('strong', {
+	    staticStyle: {
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_vm._v("Nemesis")])]), _vm._v(" x "), _c('a', {
+	    attrs: {
+	      "href": ""
+	    }
+	  }, [_c('strong', {
+	    staticStyle: {
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_vm._v("Other Malinois")])]), _vm._v(" text here text here text here text heretext heretext heretext heretext here")])]), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
+	    attrs: {
+	      "href": ""
+	    }
+	  }, [_c('strong', {
+	    staticStyle: {
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_vm._v("Nemesis")])]), _vm._v(" x "), _c('a', {
+	    attrs: {
+	      "href": ""
+	    }
+	  }, [_c('strong', {
+	    staticStyle: {
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_vm._v("Other Malinois")])]), _vm._v(" text here text here text here")])]), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
+	    attrs: {
+	      "href": ""
+	    }
+	  }, [_c('strong', {
+	    staticStyle: {
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_vm._v("Nemesis")])]), _vm._v(" x "), _c('a', {
+	    attrs: {
+	      "href": ""
+	    }
+	  }, [_c('strong', {
+	    staticStyle: {
+	      "border-bottom": "1px solid white"
+	    }
+	  }, [_vm._v("Other Malinois")])]), _vm._v(" text here text here text here")])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('li', {
 	    staticClass: "name"
-	  }, [_vm._v("NAME: " + _vm._s(_vm.dog.title) + "\n            ")]), _vm._v(" "), _c('li', [_c('p', {
-	    staticClass: "describe-paragraph"
-	  }, [_vm._v("\n                " + _vm._s(_vm.dog.bio) + "\n              ")])])])])])])])])
-	},staticRenderFns: []}
+	  }, [_c('strong', [_vm._v("Dog Bio")])])
+	}]}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
@@ -11648,7 +12124,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -11684,12 +12160,27 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
 
-	var Home = {};
+	var Home = {
+	  data: function data() {
+	    return {
+	      content: {
+	        about: null,
+	        training: null,
+	        breeding: null
+	      }
+	    };
+	  },
+	  created: function created() {
+	    var _this = this;
+
+	    this.$http.get('/api/dynamic-content/list').then(function (response) {
+	      response.json().then(function (json) {
+	        _this.content = json;
+	      });
+	    }, function (error) {});
+	  }
+	};
 
 	exports.default = Home;
 
@@ -11698,37 +12189,49 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _vm._m(0)
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "vue-template-wrapper"
 	  }, [_c('div', {
 	    staticClass: "container-fluid cont-about"
 	  }, [_c('div', {
 	    staticClass: "row"
-	  }, [_c('div', {
+	  }, [(_vm.content.about) ? _c('div', {
 	    staticClass: "col-xs-12"
 	  }, [_c('h1', {
-	    staticClass: "about-mission"
-	  }, [_vm._v(" ABOUT / MISSION ")]), _vm._v(" "), _c('p', {
-	    staticClass: "about-text"
-	  }, [_vm._v("\n          EACM K-9 is a multi-faceted K-9 training, and breeding operation with an emphasis on producing single and dual purpose explosives detection and protection K-9’s. We produce green dogs as well as fully trained K-9s ready to be deployed in a law enforcement, military and security capacities\n          Our K-9’s are started from a very young age with a solid foudation built on socialization, confidence development and exposure to a wide range of environment stimulation in the form of scents, sounds and sights intended to make them confidence from the start of their training0.\n        ")])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "about-mission",
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.content.about.title)
+	    }
+	  }), _vm._v(" "), _c('p', {
+	    staticClass: "about-text",
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.content.about.content)
+	    }
+	  })]) : _vm._e()])]), _vm._v(" "), _c('div', {
 	    staticClass: "container-fluid cont-second"
 	  }, [_c('div', {
 	    staticClass: "row"
-	  }, [_c('div', {
+	  }, [_vm._m(0), _vm._v(" "), (_vm.content.breeding) ? _c('div', {
+	    staticClass: "col-xs-6"
+	  }, [_c('h2', {
+	    staticClass: "info-header",
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.content.breeding.title)
+	    }
+	  }), _vm._v(" "), _c('p', {
+	    staticClass: "info-text",
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.content.breeding.content)
+	    }
+	  })]) : _vm._e()])])])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
 	    staticClass: "col-xs-6"
 	  }, [_c('h2', {
 	    staticClass: "info-header"
 	  }, [_vm._v("Training")]), _vm._v(" "), _c('p', {
 	    staticClass: "info-text"
-	  }, [_vm._v("\n          Training dogs is our passion and what we look forward to each day. Whether it be obedience, protection or detection work, we aim to develop dogs whos’ working potential is maximized through development of confidence and communicating clear instructions to the dogs in a manner they understand.\n        ")])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
-	  }, [_c('h2', {
-	    staticClass: "info-header"
-	  }, [_vm._v("Breeding")]), _vm._v(" "), _c('p', {
-	    staticClass: "info-text"
-	  }, [_vm._v("\n          At EACM K9, we have diligently worked to source exceptional belgian malinois who are sound in confirmation, working ability, possess exceptional drives and social. Balanced dogs are the cornerstone of our breeding program. Regardless of whether our dogs are purposed for work in sport protection, law enforcement or high risk conflict zones, we understand the importance of producing well balanced dogs who adapt to a wide range of environments.\n        ")])])])])])
+	  }, [_vm._v("\n          Training dogs is our passion and what we look forward to each day. Whether it be obedience, protection or detection work, we aim to develop dogs whos’ working potential is maximized through development of confidence and communicating clear instructions to the dogs in a manner they understand.\n        ")])])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -11752,9 +12255,9 @@
 	  /* cssModules */
 	  null
 	)
-	Component.options.__file = "/Users/LucySkyDiamonds/Projects/johnie-riece/k9/src/frontend/litters/litters.component.vue"
+	Component.options.__file = "/Users/LucySkyDiamonds/Projects/johnie-riece/k9/src/frontend/puppy/puppy.component.vue"
 	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-	if (Component.options.functional) {console.error("[vue-loader] litters.component.vue: functional components are not supported with templates, they should use render functions.")}
+	if (Component.options.functional) {console.error("[vue-loader] puppy.component.vue: functional components are not supported with templates, they should use render functions.")}
 
 	/* hot reload */
 	if (false) {(function () {
@@ -11763,9 +12266,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-aa5bb7fa", Component.options)
+	    hotAPI.createRecord("data-v-5afe6c4e", Component.options)
 	  } else {
-	    hotAPI.reload("data-v-aa5bb7fa", Component.options)
+	    hotAPI.reload("data-v-5afe6c4e", Component.options)
 	  }
 	})()}
 
@@ -11776,7 +12279,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -11924,285 +12427,386 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
-	var Litters = {};
+	var Puppy = {
+	  data: function data() {
+	    return {
+	      litter: null,
+	      puppy: null,
+	      puppies: []
+	    };
+	  },
+	  created: function created() {
+	    var _this = this;
 
-	exports.default = Litters;
+	    this.$http.get('/api/dogs/' + this.$route.params.id).then(function (response) {
+	      response.json().then(function (json) {
+	        _this.puppy = json;
+
+	        _this.$http.get('/api/dogs?litter=' + _this.puppy.litter + '&puppy=1').then(function (response) {
+	          response.json().then(function (json) {
+	            _this.puppies = json;
+	          });
+	        }, function (error) {});
+
+	        _this.$http.get('/api/litters/' + _this.puppy.litter).then(function (response) {
+	          response.json().then(function (json) {
+	            _this.litter = json;
+	          });
+	        }, function (error) {});
+	      });
+	    }, function (error) {});
+	  }
+	};
+
+	exports.default = Puppy;
 
 /***/ },
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _vm._m(0)
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "vue-template-wrapper"
-	  }, [_c('div', {
-	    staticClass: "container-fluid"
+	  }, [(_vm.litter) ? _c('div', {
+	    staticClass: "container-fluid cont-pup"
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
 	    staticClass: "col-xs-6"
 	  }, [_c('div', {
-	    staticClass: "thumbnail"
-	  }, [_c('img', {
-	    staticClass: "responsive",
+	    staticClass: "col-describe"
+	  }, [_c('ul', {
+	    staticClass: "describe"
+	  }, [_c('li', {
+	    staticClass: "name"
+	  }, [_c('strong', {
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.litter.name)
+	    }
+	  })])]), _vm._v(" "), _c('img', {
+	    staticStyle: {
+	      "height": "300px",
+	      "display": "block",
+	      "margin": "0 auto",
+	      "padding": "10px"
+	    },
 	    attrs: {
-	      "src": "img/FB_IMG_1490587265409.jpg",
-	      "width": "500",
-	      "height": "auto",
-	      "data-toggle": "modal",
-	      "data-target": "#parent-info"
+	      "src": "img/Puppy1.jpg"
+	    }
+	  }), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6 col-description",
+	    staticStyle: {
+	      "border-left": "1px solid white",
+	      "min-height": "500px"
+	    }
+	  }, [_vm._m(4), _vm._v(" "), _c('p', {
+	    staticStyle: {
+	      "padding": "10px"
+	    },
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.puppy.bio)
+	    }
+	  }), _vm._v(" "), _c('ul', {
+	    staticStyle: {
+	      "padding": "10px"
+	    }
+	  }, [_c('li', {
+	    staticStyle: {
+	      "padding-bottom": "5px"
+	    }
+	  }, [_c('strong', [_vm._v("Date Of Birth: ")]), _c('span', {
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.puppy.dateOfBirth)
+	    }
+	  })]), _vm._v(" "), _c('li', {
+	    staticStyle: {
+	      "padding-bottom": "5px"
+	    }
+	  }, [_c('strong', [_vm._v("Color: ")]), _c('span', {
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.puppy.color)
+	    }
+	  })]), _vm._v(" "), _c('li', {
+	    staticStyle: {
+	      "padding-bottom": "5px"
+	    }
+	  }, [_c('strong', [_vm._v("Litter: ")]), _c('span', {
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.litter.name)
+	    }
+	  })]), _vm._v(" "), _c('li', {
+	    staticStyle: {
+	      "padding-bottom": "5px"
+	    }
+	  }, [_c('strong', [_vm._v("Evaluation:")]), _c('span', {
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.puppy.evaluation)
+	    }
+	  })])]), _vm._v(" "), _vm._m(5)])])]) : _vm._e()])
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "row row-pups"
+	  }, [_c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('h5', {
+	    staticStyle: {
+	      "padding": "20px"
+	    }
+	  }, [_c('strong', [_vm._v("Puppy List and Availability")])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "row"
+	  }, [_c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  }), _vm._v(" "), _c('small', {
+	    staticClass: "availability-unavailable"
+	  }, [_vm._v("UNAVAILABLE")])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  }), _vm._v(" "), _c('small', {
+	    staticClass: "availability-unavailable"
+	  }, [_vm._v("UNAVAILABLE")])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "row"
+	  }, [_c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-3"
+	  }, [_c('img', {
+	    staticClass: "img-pup",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    },
+	    attrs: {
+	      "src": "img/Puppy1.jpg",
+	      "onclick": "showImage('img/Puppy1.jpg');"
+	    }
+	  })])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('h4', {
+	    staticStyle: {
+	      "background-color": "none",
+	      "padding": "10px"
+	    }
+	  }, [_c('strong', [_vm._v("Description")])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "cont-lineage"
+	  }, [_c('div', {
+	    staticClass: "row"
+	  }, [_c('h5', {
+	    staticClass: "lineage-h"
+	  }, [_vm._v("Lineage")]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6 col-mom",
+	    staticStyle: {
+	      "border-bottom": "1px solid white",
+	      "background-color": "rgba(52, 73, 94, 0.5)"
+	    }
+	  }, [_c('img', {
+	    staticClass: "img-lineage-mother",
+	    attrs: {
+	      "src": "img/FB_IMG_1490587265409.jpg"
+	    }
+	  })]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6 col-dad",
+	    staticStyle: {
+	      "border-bottom": "1px solid white",
+	      "background-color": "rgba(52, 73, 94, 0.5)"
+	    }
+	  }, [_c('img', {
+	    staticClass: "img-lineage-father",
+	    attrs: {
+	      "src": "img/FB_IMG_1490587265409.jpg"
 	    }
 	  })])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
-	  }, [_c('div', {
-	    staticClass: "thumbnail"
-	  }, [_c('img', {
-	    staticClass: "responsive",
-	    attrs: {
-	      "src": "img/FB_IMG_1490587265409.jpg",
-	      "width": "500",
-	      "height": "auto",
-	      "data-toggle": "modal",
-	      "data-target": "#parent-info"
-	    }
-	  })])])]), _vm._v(" "), _c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-3"
 	  }, [_c('div', {
-	    staticClass: "col-describe"
-	  }, [_c('ul', {
-	    staticClass: "describe"
-	  }, [_c('li', {
-	    staticClass: "name"
-	  }, [_vm._v("\n              Pup\n            ")]), _vm._v(" "), _c('li', [_c('p', {
-	    staticClass: "describe-paragraph"
-	  }, [_vm._v("\n                BIO:  Lorem ipsum dolor sit amet yawn bird seed furry. Mittens park foot meow play bark play tuxedo wet nose field chirp walk cockatiel teeth field cockatiel. Throw commands litter foot smooshy pet food heel bedding tabby paws sit pet food bedding heel dog catch play dead running stay. String throw whiskers lazy dog run fast string feeder catch water dog. Right Paw brush harness vitamins ferret aquarium Scooby snacks fur chow.\n              ")])])]), _vm._v(" "), _c('div', {
-	    staticClass: "row row-pups"
-	  }, [_c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })])])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
-	  }, [_c('div', {
-	    staticClass: "col-describe"
-	  }, [_c('ul', {
-	    staticClass: "describe"
-	  }, [_c('li', {
-	    staticClass: "name"
-	  }, [_vm._v("Pup")]), _vm._v(" "), _c('li', [_c('p', {
-	    staticClass: "describe-paragraph"
-	  }, [_vm._v("\n                BIO:  Lorem ipsum dolor sit amet yawn bird seed furry. Mittens park foot meow play bark play tuxedo wet nose field chirp walk cockatiel teeth field cockatiel. Throw commands litter foot smooshy pet food heel bedding tabby paws sit pet food bedding heel dog catch play dead running stay. String throw whiskers lazy dog run fast string feeder catch water dog. Right Paw brush harness vitamins ferret aquarium Scooby snacks fur chow.\n              ")])])]), _vm._v(" "), _c('div', {
-	    staticClass: "row row-pups"
-	  }, [_c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })])])])])]), _vm._v(" "), _c('div', {
+	    staticClass: "gran-sire-dam"
+	  }, [_vm._v("\n                Gran Sire\n              ")]), _vm._v(" "), _c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-6 col-great-sire"
 	  }, [_c('div', {
-	    staticClass: "col-describe"
-	  }, [_c('ul', {
-	    staticClass: "describe"
-	  }, [_c('li', {
-	    staticClass: "name"
-	  }, [_vm._v("Pup")]), _vm._v(" "), _c('li', [_c('p', {
-	    staticClass: "describe-paragraph"
-	  }, [_vm._v("\n                BIO:  Lorem ipsum dolor sit amet yawn bird seed furry. Mittens park foot meow play bark play tuxedo wet nose field chirp walk cockatiel teeth field cockatiel. Throw commands litter foot smooshy pet food heel bedding tabby paws sit pet food bedding heel dog catch play dead running stay. String throw whiskers lazy dog run fast string feeder catch water dog. Right Paw brush harness vitamins ferret aquarium Scooby snacks fur chow.\n              ")])])]), _vm._v(" "), _c('div', {
-	    staticClass: "row row-pups"
+	    staticClass: "great-gran-sire"
+	  }, [_vm._v(" Great Gran Sire")])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6 col-great-dam"
 	  }, [_c('div', {
+	    staticClass: "great-gran-dam"
+	  }, [_vm._v(" Great Gran Dam")])])])]), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })])])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
 	  }, [_c('div', {
-	    staticClass: "col-describe"
-	  }, [_c('ul', {
-	    staticClass: "describe"
-	  }, [_c('li', {
-	    staticClass: "name"
-	  }, [_vm._v("Pup")]), _vm._v(" "), _c('li', [_c('p', {
-	    staticClass: "describe-paragraph"
-	  }, [_vm._v("\n                BIO:  Lorem ipsum dolor sit amet yawn bird seed furry. Mittens park foot meow play bark play tuxedo wet nose field chirp walk cockatiel teeth field cockatiel. Throw commands litter foot smooshy pet food heel bedding tabby paws sit pet food bedding heel dog catch play dead running stay. String throw whiskers lazy dog run fast string feeder catch water dog. Right Paw brush harness vitamins ferret aquarium Scooby snacks fur chow.\n              ")])])]), _vm._v(" "), _c('div', {
-	    staticClass: "row row-pups"
+	    staticClass: "gran-sire-dam"
+	  }, [_vm._v("\n                Gran Dam\n              ")]), _vm._v(" "), _c('div', {
+	    staticClass: "row"
 	  }, [_c('div', {
+	    staticClass: "col-xs-6 col-great-sire"
+	  }, [_c('div', {
+	    staticClass: "great-gran-sire"
+	  }, [_vm._v(" Great Gran Sire")])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6 col-great-dam"
+	  }, [_c('div', {
+	    staticClass: "great-gran-dam"
+	  }, [_vm._v(" Great Gran Dam")])])])]), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
+	  }, [_c('div', {
+	    staticClass: "gran-sire-dam"
+	  }, [_vm._v("\n                Gran Sire\n              ")]), _vm._v(" "), _c('div', {
+	    staticClass: "row"
+	  }, [_c('div', {
+	    staticClass: "col-xs-6 col-great-sire"
+	  }, [_c('div', {
+	    staticClass: "great-gran-sire"
+	  }, [_vm._v(" Great Gran Sire")])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6 col-great-dam"
+	  }, [_c('div', {
+	    staticClass: "great-gran-dam"
+	  }, [_vm._v(" Great Gran Dam")])])])]), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-3"
-	  }, [_c('img', {
-	    staticClass: "img-pup",
-	    staticStyle: {
-	      "cursor": "pointer"
-	    },
-	    attrs: {
-	      "src": "img/Puppy1.jpg",
-	      "onclick": "showImage('img/Puppy1.jpg');"
-	    }
-	  })])])])])])])])
+	  }, [_c('div', {
+	    staticClass: "gran-sire-dam"
+	  }, [_vm._v("\n                Gran Dam\n              ")]), _vm._v(" "), _c('div', {
+	    staticClass: "row"
+	  }, [_c('div', {
+	    staticClass: "col-xs-6 col-great-sire"
+	  }, [_c('div', {
+	    staticClass: "great-gran-sire"
+	  }, [_vm._v(" Great Gran Sire")])]), _vm._v(" "), _c('div', {
+	    staticClass: "col-xs-6 col-great-dam"
+	  }, [_c('div', {
+	    staticClass: "great-gran-dam"
+	  }, [_vm._v(" Great Gran Dam")])])])])])])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-aa5bb7fa", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-5afe6c4e", module.exports)
 	  }
 	}
 

@@ -1,20 +1,20 @@
 html
   head
-    title Administration
+    title #{__('admin.area')}
     link(rel='stylesheet', href='/css/admin.css')
   body.admin
     .container
       .col-sm-6.offset-sm-3
-        h1 Login
+        h1 #{__('admin.login.heading')}
 
         if message.length > 0
           .alert.alert-danger= message
 
         form(action='/admin/login', method='post')
           .form-group
-            label Username
+            label #{__('admin.login.username')}
             input.form-control(type='text', name='username')
           .form-group
-            label Password
+            label #{__('admin.login.password')}
             input.form-control(type='password', name='password')
-          button.btn.btn-primary(type='submit') Login
+          button.btn.btn-primary(type='submit') #{__('admin.login.login')}

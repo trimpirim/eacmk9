@@ -1,10 +1,12 @@
 .form-group
-  label.control-label
-  input.form-control(type='text', name='title', value=`${litter.title}`)
+  label.control-label #{__('admin.litters.name')}
+  input.form-control(type='text', name='name', value=`${litter.name}`)
+  if form && form.getErrors('name').length > 0
+    div.error= __(form.getErrors('name')[0])
 .row
   .col-xs-2
     .form-group
-      button.btn.btn-primary(type='submit') Save
+      button.btn.btn-primary(type='submit') #{__('admin.actions.save')}
   .col-xs-2
     .form-group
-      a.btn.btn-primary(href='/admin/litters/list') Cancel
+      a.btn.btn-primary(href='/admin/litters/list') #{__('admin.actions.cancel')}

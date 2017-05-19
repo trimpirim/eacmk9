@@ -1,82 +1,81 @@
-var express = require('express');
-var router = express.Router();
-var formOfLitterCreate = require('../../forms/litter/create');
-var formOfLitterEdit = require('../../forms/litter/edit');
-var fs = require('fs');
-var ImageConstants = require('../../constants/image-constants');
-var Litter = require('../../models/litter');
+const express = require('express'),
+      router = express.Router(),
+      form = require('../../forms/litter/form'),
+      fs = require('fs'),
+      ImageConstants = require('../../constants/image-constants'),
+      Litter = require('../../models/litter')
 
-var routes = function(loggedMiddleware) {
+const routes = (loggedMiddleware) => {
   router.route('/list')
-    .get(loggedMiddleware, function(req, res) {
-      Litter.find({}).sort([['createdAt', 'descending']]).exec(function(err, litters) {
-        if (err) throw err;
-        res.status(200);
-        res.render('admin/litters/list', {litters: litters});
-      });
-    });
+    .get(loggedMiddleware, (req, res) => {
+      Litter.find({}).sort([['createdAt', 'descending']]).exec((err, litters) => {
+        if (err) throw err
+        res.status(200)
+        res.render('admin/litters/list', {litters: litters})
+      })
+    })
 
   router.route('/create')
-    .get(loggedMiddleware, function(req, res) {
-      var litter = new Litter();
-
-      res.status(200);
-      res.render('admin/litters/create', {litter: litter});
+    .all(loggedMiddleware, (req, res, next) => {
+      const litter = new Litter()
+      res.locals.litterObject = litter
+      next()
     })
-    .post(loggedMiddleware, function(req, res) {
-      formOfLitterCreate(req, res);
-      var litter = new Litter();
-      litter.set(req.form);
+    .get(loggedMiddleware, (req, res) => {
+      res.status(200)
+      res.render('admin/litters/create', {litter: res.locals.litterObject, form: req.form})
+    })
+    .post(loggedMiddleware, (req, res) => {
+      form.create(req, res)
+      res.locals.litterObject.set(req.form)
 
       if (!req.form.isValid) {
-        return res.render('admin/litters/create', {litter: litter, form: req.form});
+        return res.render('admin/litters/create', {litter: res.locals.litterObject, form: req.form})
       }
 
-      litter.save(function(err, litter) {
-        if (err) throw err;
-
-        res.redirect(200, '/admin/litters/edit/' + litter._id);
-      });
-    });
-
-  router.route('/edit/:litter')
-    .get(loggedMiddleware, function(req, res) {
-      Litter.findById({_id: req.params.litter}).exec(function(err, litter) {
-        if (err) throw err;
-
-        res.status(200);
-        res.render('admin/litters/edit', {litter: litter});
+      res.locals.litterObject.save((err, litter) => {
+        if (err) throw err
+        res.redirect(200, '/admin/litters/edit/' + litter._id)
       })
     })
-    .post(loggedMiddleware, function(req, res) {
-      Litter.findById({_id: req.params.litter}).exec(function(err, litter) {
-        if (err) throw err;
 
-        formOfLitterEdit(req, res);
-        litter.set(req.form);
+  router.route('/edit/:id')
+    .all(loggedMiddleware, (req, res, next) => {
+      Litter.findById({_id: req.params.id}).exec((err, litter) => {
+        if (err) throw err
+        res.locals.litterObject = litter
+        next()
+      })
+    })
+    .get(loggedMiddleware, (req, res) => {
+      res.status(200)
+      res.render('admin/litters/edit', {litter: res.locals.litterObject})
+    })
+    .post(loggedMiddleware, (req, res) => {
+      form.edit(req, res)
+      res.locals.litterObject.set(req.form)
 
-        if (!req.form.isValid) {
-          return res.render('admin/litters/edit', {litter: litter, form: req.form});
-        }
+      if (!req.form.isValid) {
+        return res.render('admin/litters/edit', {litter: res.locals.litterObject, form: req.form})
+      }
 
-        litter.save(function(err, litter) {
-          if (err) throw err;
+      res.locals.litterObject.save((err, litter) => {
+        if (err) throw err
+        res.render('admin/litters/edit', {litter: res.locals.litterObject, form: req.form})
+      })
+    })
 
-          res.render('admin/litters/edit', {litter: litter, form: req.form});
+  router.route('/delete/:id')
+    .get(loggedMiddleware, (req, res) => {
+      Litter.findById({_id: req.params.id}).exec((err, litter) => {
+        litter.remove((err) => {
+          if (err) throw err
+          res.redirect(200, '/admin/litters/list')
         })
       })
-    });
+    })
 
-  router.route('/delete/:litter')
-    .get(loggedMiddleware, function(req, res) {
-      Litter.findById({_id: req.params.litter}).exec(function(err, litter) {
-        if (err) throw err;
+  return router
+}
 
-        litter.remove();
-      })
-    });
-
-  return router;
-};
-
-module.exports = routes;
+module.exports = routes

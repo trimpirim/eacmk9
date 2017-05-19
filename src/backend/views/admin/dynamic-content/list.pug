@@ -1,0 +1,35 @@
+extends layout.pug
+
+block heading
+  h1 #{__('admin.dynamic_content.heading')}
+
+block actions
+  .row
+    .col-xs-12
+      .form-group
+        if !existingContents.about
+          a.btn.btn-primary.btn-full-width(href='/admin/dynamic-content/create?which=about') #{__('admin.dynamic_content.add_about')}
+        if !existingContents.services
+          a.btn.btn-primary.btn-full-width.s-1x-margin-top(href='/admin/dynamic-content/create?which=services') #{__('admin.dynamic_content.add_services')}
+        if !existingContents.breeding
+          a.btn.btn-primary.btn-full-width.s-1x-margin-top.s-1x-margin-bottom(href='/admin/dynamic-content/create?which=breeding') #{__('admin.dynamic_content.add_breeding')}
+
+block content
+  .row 
+    .col-xs-12
+      .list
+        each dynamicContent, i in dynamicContents
+          .row
+            .col-xs-12.list-item(class=i % 2 == 0 ? 'odd' : 'even')
+              .row
+                .col-xs-3= dynamicContent._id
+                .col-xs-6= dynamicContent.title
+                .col-xs-1
+                  a(href=`/admin/dynamic-content/edit/${dynamicContent._id}`)
+                    i.glyphicon.glyphicon-edit
+                .col-xs-1
+                  a(href=`/admin/dynamic-content/delete/${dynamicContent._id}`)
+                    i.glyphicon.glyphicon-trash
+        else
+          .row
+            .col-xs-12.list-item #{__('admin.dynamic_content.no_contents')}

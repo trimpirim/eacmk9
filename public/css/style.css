@@ -279,24 +279,23 @@ body.body-example-sixth .fa-google-plus:hover {
   font-family: 'Kanit', sans-serif;
   text-align: left;
   width: auto;
-  background-color: rgba(52, 73, 94, 0.2);
 }
 
 .name {
-  border-bottom: 1px solid white;
-  font-size: 15px;
-  padding-left: 10px;
-  padding-top: 20px;
+  font-size: 20px;
+  text-align: center;
+ border-bottom: 1px solid white;
 
 }
 
 .describe-paragraph {
   padding-left: 10px;
+  margin-top: 20px;
 }
 
 .col-describe {
-  padding-left: 10px;
-
+  padding: 10px;
+  background-color: rgba(52, 73, 94, 0.5);
 }
 
 
@@ -327,9 +326,9 @@ body.body-example-sixth .fa-google-plus:hover {
 .dog-list {
   text-align: center;
   padding-top: 50px;
-  font-size: 25px;
+  font-size: 20px;
   font-family: 'Kanit', sans-serif;
-
+  width: 90%;
 }
 
 ul.dog-name {
@@ -337,9 +336,8 @@ border: 2px solid transparent;
 }
 
 ul.dog-name li {
-padding-top: 50px;
-padding-bottom: 50px;
-background-color: rgba(52, 73, 94, 0.2);
+text-align: center;
+padding: 10px;
 }
 
 ul.dog-name:hover {
@@ -350,6 +348,7 @@ h3.kratos {
   display: block;
   text-align: center;
   font-family: 'Kanit', sans-serif;
+  background-color: none;
 
 }
 /*INDEX 6 DOGLIST END */
@@ -399,6 +398,8 @@ h3.kratos {
   margin: 0 auto;
   transform: translateY(-50%) translateX(50%);
 }
+
+
 /*INDEX 6 - UPCOMMING LITTERS END */
 
 /* IMAGE SLIDER */
@@ -447,9 +448,189 @@ h3.kratos {
   background-color: rgba(44, 62, 80, 0.5);
 }
 
-h3 {
-  background-color: rgba(44, 62, 80, 0.5);
-  border-bottom: 1px solid white;
-}
+
  
 /* SERVICES END */
+
+.col-description {
+  background-color: rgba(52, 73, 94, 0,2);
+}
+
+.main-img {
+  width: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+.lineage {
+  display: block;
+  margin: 0 auto;
+}
+
+.dog-name {
+  padding-top: 20px;
+}
+
+.row-dog-photos {
+  margin-bottom: 50px;
+}
+
+
+.planned-breedings {
+  padding: 10px;
+  background-color: rgba(52, 73, 94, 0.5);
+  height: auto;
+}
+
+.li-titles {
+  padding: 20px;
+  font-size: 15px;
+}
+
+.titles-certifications {
+  padding-left: 20px;
+}
+
+.row-search {
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  padding-top: 30px;
+  background-color: rgba(41, 128, 185, 0.2);
+}
+
+.search-icon {
+  margin-top: 10px;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  padding-right: 210px;
+}
+
+.our-dogs-h {
+  padding-left: 350px;
+}
+
+.dropdown-search {
+  padding: 5px;
+  margin-top: 10px;
+  border: 1px solid white;
+  border-radius: 20px;
+  background-color: transparent;
+  position: relative;
+}
+
+.btn-primary {
+  background-color: transparent;
+  border: 0;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  border: 0;
+  color: grey;
+}
+
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  outline: none;
+}
+
+.dropdown-menu {
+  background-color: transparent;
+  color: white;
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    color: rgba(41, 128, 185,1.0);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.availability-unavailable {
+  color: rgba(192, 57, 43,1.0);
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  font-weight: bolder;
+  text-shadow: 1px 1px black;
+}
+
+.lineage-h {
+  text-align: center;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.col-mom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.col-dad {
+  text-align: center;
+  margin-top: 20px;
+
+}
+
+.col-xs-1 {
+  padding: 5px;
+  margin: 0;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.img-lineage-mother,
+.img-lineage-father {
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.gran-sire-dam {
+  background-color: rgba(52, 152, 219, 0.5);
+  border-radius: 30px;
+  text-align: center;
+  padding: 5px;
+}
+
+.great-gran-sire {
+  background-color: rgba(22, 160, 133, 0.5);
+  padding: 5px;
+  border-radius: 30px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.great-gran-dam {
+  background-color: rgba(22, 160, 133, 0.5);
+  border-radius: 30px;
+  padding: 5px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.col-great-dam {
+  border-left: 1px solid white;
+  
+  padding: 5px;
+}
+
+.col-great-sire {
+
+  padding: 5px;
+}
