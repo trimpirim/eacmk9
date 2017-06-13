@@ -213,7 +213,7 @@
                   <div class="col-xs-3" v-for="puppy in puppies">
                     <div class="dog-block">
                       <router-link :to="{name: 'puppy', params: {id: puppy._id}}">
-                        <strong>{{ litter.name }}</strong>
+                        <strong>{{ puppy.name }}</strong>
                       </router-link>
                       <img class="img-responsive" :src="'/images/display?image=' + puppy.images[0].content" v-if="puppy.images.length > 0" />
                     </div>

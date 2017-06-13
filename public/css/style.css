@@ -875,7 +875,7 @@ h3 {
 
 .navbar-nav .open .dropdown-menu {
   position: absolute;
-  width: 100%;
+  width: auto;
   background-color: #262e38;
   border: 1px solid white;
   border-radius: 15px;

@@ -13338,7 +13338,7 @@
 	          }
 	        }
 	      }
-	    }, [_c('strong', [_vm._v(_vm._s(_vm.litter.name))])]), _vm._v(" "), (puppy.images.length > 0) ? _c('img', {
+	    }, [_c('strong', [_vm._v(_vm._s(puppy.name))])]), _vm._v(" "), (puppy.images.length > 0) ? _c('img', {
 	      staticClass: "img-responsive",
 	      attrs: {
 	        "src": '/images/display?image=' + puppy.images[0].content
