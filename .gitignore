@@ -1,6 +1,5 @@
 /node_modules
 src/backend/config.js
 .DS_Store
-public/js/vendors/*
 !*.gitkeep
 gulps/config.js
