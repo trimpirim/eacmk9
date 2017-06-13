@@ -12410,7 +12410,7 @@
 	      "padding": "10px"
 	    },
 	    attrs: {
-	      "src": '/images/display?image=' + _vm.dog.images[0].content._id,
+	      "src": '/images/display?image=' + _vm.dog.images[0].content,
 	      "width": "500",
 	      "height": "auto"
 	    }
@@ -12422,7 +12422,7 @@
 	    }, [_c('img', {
 	      staticClass: "img-responsive img-pup",
 	      attrs: {
-	        "src": '/images/display?image=' + image.content._id
+	        "src": '/images/display?image=' + image.content
 	      }
 	    })])
 	  }))])]) : _vm._e(), _vm._v(" "), _vm._m(0)])])]) : _vm._e()
@@ -13174,7 +13174,7 @@
 	      "padding": "10px"
 	    },
 	    attrs: {
-	      "src": '/images/display?image=' + _vm.puppy.images[0].content._id
+	      "src": '/images/display?image=' + _vm.puppy.images[0].content
 	    }
 	  }), _vm._v(" "), _c('div', {
 	    staticClass: "row"
@@ -13187,7 +13187,7 @@
 	        "cursor": "pointer"
 	      },
 	      attrs: {
-	        "src": '/images/display?image=' + image.content._id
+	        "src": '/images/display?image=' + image.content
 	      }
 	    })])
 	  }))]) : _vm._e()])])])]), _vm._v(" "), _c('div', {
@@ -13221,7 +13221,7 @@
 	  }), _vm._v(" "), (_vm.sire.images.length > 0) ? _c('img', {
 	    staticClass: "img-responsive center-block",
 	    attrs: {
-	      "src": '/images/display?image=' + _vm.sire.images[0].content._id
+	      "src": '/images/display?image=' + _vm.sire.images[0].content
 	    }
 	  }) : _vm._e()])]), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-6"
@@ -13234,7 +13234,7 @@
 	  }), _vm._v(" "), (_vm.dam.images.length > 0) ? _c('img', {
 	    staticClass: "img-responsive center-block",
 	    attrs: {
-	      "src": '/images/display?image=' + _vm.dam.images[0].content._id
+	      "src": '/images/display?image=' + _vm.dam.images[0].content
 	    }
 	  }) : _vm._e()])])])])])])]), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-6 d-flex f-direction-column"
@@ -13341,7 +13341,7 @@
 	    }, [_c('strong', [_vm._v(_vm._s(_vm.litter.name))])]), _vm._v(" "), (puppy.images.length > 0) ? _c('img', {
 	      staticClass: "img-responsive",
 	      attrs: {
-	        "src": '/images/display?image=' + puppy.images[0].content._id
+	        "src": '/images/display?image=' + puppy.images[0].content
 	      }
 	    }) : _vm._e()], 1)])
 	  }), _vm._v(" "), (!_vm.puppy.available) ? _c('small', {

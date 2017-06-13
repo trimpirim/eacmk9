@@ -10,7 +10,7 @@ const schema = new Schema({
 })
 
 const autoPopulateParents = function(next) {
-  this.populate('content')
+  // this.populate('content')
   next()
 }
 

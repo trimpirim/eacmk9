@@ -62,10 +62,10 @@
             <div class="col-xs-6 d-flex f-direction-column">
               <div class="info-content info-content-without-header">
                 <div v-if="puppy.images.length > 0">
-                  <img :src="'/images/display?image=' + puppy.images[0].content._id" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
+                  <img :src="'/images/display?image=' + puppy.images[0].content" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
                   <div class="row">
                     <div class="col-xs-3" v-for="image in puppy.images">
-                      <img class="img-pup" :src="'/images/display?image=' + image.content._id" style="cursor: pointer;"/>
+                      <img class="img-pup" :src="'/images/display?image=' + image.content" style="cursor: pointer;"/>
                     </div>
                   </div>
                 </div>
@@ -91,13 +91,13 @@
                           <div class="col-xs-6">
                             <div class="dog-block">
                               <strong v-html="sire.name"></strong>
-                              <img class="img-responsive center-block" :src="'/images/display?image=' + sire.images[0].content._id" v-if="sire.images.length > 0">
+                              <img class="img-responsive center-block" :src="'/images/display?image=' + sire.images[0].content" v-if="sire.images.length > 0">
                             </div>
                           </div>
                           <div class="col-xs-6">
                             <div class="dog-block">
                               <strong v-html="dam.name"></strong>
-                              <img class="img-responsive center-block" :src="'/images/display?image=' + dam.images[0].content._id" v-if="dam.images.length > 0">
+                              <img class="img-responsive center-block" :src="'/images/display?image=' + dam.images[0].content" v-if="dam.images.length > 0">
                             </div>
                           </div>
                         </div>
@@ -215,7 +215,7 @@
                       <router-link :to="{name: 'puppy', params: {id: puppy._id}}">
                         <strong>{{ litter.name }}</strong>
                       </router-link>
-                      <img class="img-responsive" :src="'/images/display?image=' + puppy.images[0].content._id" v-if="puppy.images.length > 0" />
+                      <img class="img-responsive" :src="'/images/display?image=' + puppy.images[0].content" v-if="puppy.images.length > 0" />
                     </div>
                   </div>
                   <small class="availability-unavailable" v-if="!puppy.available"></small>
@@ -238,10 +238,10 @@
               </li>
             </ul>
             <div v-if="puppy.images.length > 0">
-              <img :src="'/images/display?image=' + puppy.images[0].content._id" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
+              <img :src="'/images/display?image=' + puppy.images[0].content" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
               <div class="row row-pups">
                 <div class="col-xs-3" v-for="image in puppy.images">
-                  <img class="img-pup" :src="'/images/display?image=' + image.content._id" style="cursor: pointer;" onclick="showImage('img/Puppy1.jpg');" />
+                  <img class="img-pup" :src="'/images/display?image=' + image.content" style="cursor: pointer;" onclick="showImage('img/Puppy1.jpg');" />
                 </div>
               </div>
             </div>
@@ -249,7 +249,7 @@
           <h5 style="padding:20px;"><strong>Puppy List and Availability</strong></h5>
           <div class="row">
             <div class="col-xs-3" v-for="puppy in puppies">
-              <img class="img-pup" :src="'/images/display?image=' + puppy.images[0].content._id" v-if="puppy.images.length > 0" style="cursor: pointer;" onclick="showImage('img/puppy.jpg');" />
+              <img class="img-pup" :src="'/images/display?image=' + puppy.images[0].content" v-if="puppy.images.length > 0" style="cursor: pointer;" onclick="showImage('img/puppy.jpg');" />
               <router-link :to="{name: 'puppy', params: {id: puppy._id}}">
                 {{ litter.name }}
               </router-link>
@@ -271,11 +271,11 @@
             <div class="row">
               <h5 class="lineage-h">Lineage</h5>
               <div class="col-xs-6 col-mom" style=" border-bottom: 1px solid white; background-color: rgba(52, 73, 94, 0.5);">
-                <img class="img-lineage-mother" :src="'/images/display?image=' + sire.images[0].content._id" v-if="sire.images.length > 0">
+                <img class="img-lineage-mother" :src="'/images/display?image=' + sire.images[0].content" v-if="sire.images.length > 0">
               </div>
               
               <div class="col-xs-6 col-dad" style=" border-bottom: 1px solid white; background-color: rgba(52, 73, 94, 0.5);">
-                <img class="img-lineage-father" :src="'/images/display?image=' + dam.images[0].content._id" v-if="dam.images.length > 0">
+                <img class="img-lineage-father" :src="'/images/display?image=' + dam.images[0].content" v-if="dam.images.length > 0">
               </div>
             </div>
             <div class="row">
