@@ -1,0 +1,12 @@
+extends layout.pug
+
+block heading
+  h1 #{__('admin.awards.edit')}
+
+block content
+  .row 
+    .col-xs-12.inner
+      .row
+        .col-xs-6
+          form(action=`/admin/award/edit/${award._id}`, method='POST')
+            include form.pug

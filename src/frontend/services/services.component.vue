@@ -1,25 +1,47 @@
 <template>
   <div class="vue-template-wrapper">
-    <div class="container-fluid cont-services">
+    <div class="container-fluid cont-second">
       <div class="row">
-        <div class="col-xs-6">
-          <h3>Detection</h3>
-          <p class="p-services-detection"> User inputs text here. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-        </div>
-
-        <div class="col-xs-6">
-          <h3>Security</h3>
-          <p class="p-services-detection"> User inputs text here. "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-
+        <div class="col-xs-12" v-if="content.services">
+          <h1 class="info-header" v-html="content.services.title"></h1>
+          <p class="info-text" v-html="content.services.content"></p>
         </div>
       </div>
-      
+    </div>
+    <div class="container-fluid cont-second">
+      <div class="row">
+        <div class="col-xs-6" v-if="content.detection">
+          <h2 v-html="content.detection.title" class="info-header"></h2>
+          <p class="info-text" v-html="content.detection.content"></p>
+        </div>
+        <div class="col-xs-6" v-if="content.security">
+          <h2 v-html="content.security.title" class="info-header"></h2>
+          <p class="info-text" v-html="content.security.content"></p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   const Services = {
+    data: function() {
+      return {
+        content: {
+          detection: null,
+          security: null
+        }
+      }
+    },
+    created() {
+      this.$http.get('/api/dynamic-content/list').then(response => {
+        response.json().then(json => {
+          this.content = json
+        })
+      }, error => {
+
+      })
+    }
   }
 
   export default Services

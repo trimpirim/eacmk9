@@ -1,0 +1,18 @@
+include ../../form-helpers/select.pug
+
+.form-group
+  label.control-label #{__('admin.award.title')}
+  input.form-control(type='text', name='title' value=`${award.title}`)
+  if form && form.getErrors('title').length > 0
+    div.error= __(form.getErrors('title')[0])
+.form-group
+  +select(`${__('admin.award.type')}`, 'type', [{title: __('admin.award.type.title'), value: awardTypes.TITLE, selected: awardTypes.TITLE == award.type}, {title: __('admin.award.type.certificate'), value: awardTypes.CERTIFICATE, selected: awardTypes.CERTIFICATE == award.type}], {value: '', title: __('admin.award.type.select')})
+  if form && form.getErrors('type').length > 0
+    div.error= __(form.getErrors('type')[0])
+.row
+  .col-xs-2
+    .form-group
+      button.btn.btn-primary(type='submit') #{__('admin.actions.save')}
+  .col-xs-2
+    .form-group
+      a.btn.btn-primary(href=`/admin/award/edit/${award._id}`) #{__('admin.actions.cancel')}

@@ -37,6 +37,15 @@ schema.pre('validate', true, function(next, done) {
   done()
 })
 
+const autoPopulate = function(next) {
+  this.populate('sire dam images litter awards')
+  next()
+}
+
+schema
+  .pre('find', autoPopulate)
+  .pre('findOne', autoPopulate)
+
 const Dog = mongoose.model('Dog', schema)
 
 class Discipline {

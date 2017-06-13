@@ -61,6 +61,9 @@
 	"admin.dynamic_content.add_about": "Add about",
 	"admin.dynamic_content.add_services": "Add services",
 	"admin.dynamic_content.add_breeding": "Add breeding",
+	"admin.dynamic_content.add_training": "Add training",
+	"admin.dynamic_content.add_detection": "Add detection",
+	"admin.dynamic_content.add_security": "Add security",
 	"admin.dynamic_content.add": "Add content",
 	"admin.dynamic_content.title": "Heading",
 	"admin.dynamic_content.short_content": "Short content",
@@ -90,5 +93,17 @@
 	"admin.dogs.gender.male": "Male",
 	"admin.dogs.gender.female": "Female",
 	"admin.dogs.gender.select": "Select gender",
-	"admin.dogs.error.gender.required": "Gender is required"
+	"admin.dogs.error.gender.required": "Gender is required",
+	"admin.header.awards": "Awards",
+	"admin.awards.heading": "Awards",
+	"admin.awards.add": "Add award",
+	"admin.award.title": "Title",
+	"admin.award.type": "Type",
+	"admin.award.type.title": "Title",
+	"admin.award.type.certificate": "Certificate",
+	"admin.award.type.select": "Select type of award",
+	"admin.dogs.award": "Award",
+	"admin.dogs.award.select": "Select award",
+	"admin.dogs.error.award.required": "Award is required",
+	"admin.awards.edit": "admin.awards.edit"
 }

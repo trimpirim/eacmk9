@@ -9,6 +9,15 @@ const schema = new Schema({
   content: SchemaHelper.withRef(ObjectId, 'ImageContent')
 })
 
+const autoPopulateParents = function(next) {
+  this.populate('content')
+  next()
+}
+
+schema
+  .pre('find', autoPopulateParents)
+  .pre('findOne', autoPopulateParents)
+
 const DogImage = mongoose.model('DogImage', schema)
 
 module.exports = DogImage

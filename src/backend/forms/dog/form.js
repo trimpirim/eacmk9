@@ -50,8 +50,7 @@ const forms = {
     )
   },
   award: form(
-    field('title').trim().required('', 'admin.dogs.award.error.title.required'),
-    field('type').trim().required('', 'admin.dogs.award.error.title.required')
+    field('award').trim().required('', 'admin.dogs.error.award.required')
   ),
   filter: {
     form: form(

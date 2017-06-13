@@ -237,62 +237,36 @@ const routes = (loggedMiddleware) => {
       Dog.findById({_id: req.params.dog}, (err, dog) => {
         if (err) throw err
         res.locals.dog = dog
-        res.locals.award = new Award()
-        next()
-      })
-    })
-    .get(loggedMiddleware, (req, res) => {
-      res.status(200)
-      res.render('admin/dog/awards/add', {dog: res.locals.dog, award: res.locals.award})
-    })
-    .post([loggedMiddleware], (req, res, next) => {
-      form.award(req, res)
-      res.locals.award.set(req.form)
-
-      if (!req.form.isValid) {
-        return res.render('admin/dog/awards/add', {dog: res.locals.dog, award: res.locals.award, form: req.form})
-      }
-
-      res.locals.award.save((err, award) => {
-        if (err) throw err
-
-        res.locals.dog.awards.push(award)
-        res.locals.dog.save()
-        res.redirect(200, '/admin/dog/awards/' + res.locals.dog._id + '/edit/' + award._id)
-      })
-    })
-
-  router.route('/awards/:dog/edit/:award')
-    .all(loggedMiddleware, (req, res, next) => {
-      Dog.findById({_id: req.params.dog}).populate('awards').exec((err, dog) => {
-        if (err) throw err
-        res.locals.dog = dog
-        Award.findById({_id: req.params.award}).exec((err, award) => {
+        Award.find({}).sort([['createdAt', 'descending']]).exec((err, awards) => {
           if (err) throw err
-          res.locals.award = award
+          res.locals.awards = awards
           next()
         })
       })
     })
     .get(loggedMiddleware, (req, res) => {
       res.status(200)
-      res.render('admin/dog/awards/edit', {dog: res.locals.dog, award: res.locals.award})
+      res.render('admin/dog/awards/add', {dog: res.locals.dog, awards: res.locals.awards, award: null})
     })
     .post([loggedMiddleware], (req, res, next) => {
       form.award(req, res)
-      res.locals.award.set(req.form)
 
       if (!req.form.isValid) {
-        return res.render('admin/dog/awards/edit', {dog: res.locals.dog, award: res.locals.award, form: req.form})
+        return res.render('admin/dog/awards/add', {dog: res.locals.dog, awards: res.locals.awards, form: req.form, award: req.form.award})
+      } else {
+        Award.findById({_id: req.form.award}).lean().exec((err, award) => {
+          if (err) throw err
+
+          if (res.locals.dog.awards.filter(award => {
+            return award._id == req.form.award
+          }).length == 0) {
+            res.locals.dog.awards.push(award)
+            res.locals.dog.save()
+          }
+
+          res.redirect(200, '/admin/dog/edit/' + res.locals.dog._id)
+        })
       }
-
-      res.locals.award.save((err, award) => {
-        if (err) throw err
-
-        res.locals.dog.awards.push(award)
-        res.locals.dog.save()
-        res.redirect(200, '/admin/dog/awards/' + res.locals.dog._id + '/edit/' + award._id)
-      })
     })
 
   router.route('/awards/:dog/delete/:award')
@@ -308,8 +282,6 @@ const routes = (loggedMiddleware) => {
       })
     })
     .get(loggedMiddleware, (req, res) => {
-      res.locals.award.remove()
-
       const filtered = res.locals.dog.awards.filter((award) => {
         return award._id != req.params.award
       })

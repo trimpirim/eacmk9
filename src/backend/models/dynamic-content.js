@@ -17,7 +17,10 @@ const DynamicContent = mongoose.model('DynamicContent', schema)
 DynamicContent.TYPES = {
   ABOUT: 'about',
   SERVICES: 'services',
-  BREEDING: 'bredding'
+  BREEDING: 'breeding',
+  TRAINING: 'training',
+  DETECTION: 'detection',
+  SECURITY: 'security'
 }
 
 module.exports = DynamicContent

@@ -13,6 +13,12 @@ block actions
           a.btn.btn-primary.btn-full-width.s-1x-margin-top(href='/admin/dynamic-content/create?which=services') #{__('admin.dynamic_content.add_services')}
         if !existingContents.breeding
           a.btn.btn-primary.btn-full-width.s-1x-margin-top.s-1x-margin-bottom(href='/admin/dynamic-content/create?which=breeding') #{__('admin.dynamic_content.add_breeding')}
+        if !existingContents.training
+          a.btn.btn-primary.btn-full-width.s-1x-margin-top.s-1x-margin-bottom(href='/admin/dynamic-content/create?which=training') #{__('admin.dynamic_content.add_training')}
+        if !existingContents.detection
+          a.btn.btn-primary.btn-full-width.s-1x-margin-top.s-1x-margin-bottom(href='/admin/dynamic-content/create?which=detection') #{__('admin.dynamic_content.add_detection')}
+        if !existingContents.security
+          a.btn.btn-primary.btn-full-width.s-1x-margin-top.s-1x-margin-bottom(href='/admin/dynamic-content/create?which=security') #{__('admin.dynamic_content.add_security')}
 
 block content
   .row 

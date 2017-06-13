@@ -3,6 +3,7 @@ const express = require('express'),
       fs = require('fs'),
       littersRouter = require('./admin/litters'),
       dogsRouter = require('./admin/dogs'),
+      awardsRouter = require('./admin/awards'),
       dynamicContentRouter = require('./admin/dynamic-content'),
       adminImagesRouter = require('./admin/images')
 
@@ -24,6 +25,7 @@ const routes = function(passport) {
 
   admin.use('/litters', littersRouter(logged))
   admin.use('/dog', dogsRouter(logged))
+  admin.use('/award', awardsRouter(logged))
   admin.use('/images', adminImagesRouter(logged))
   admin.use('/dynamic-content', dynamicContentRouter(logged))
 

@@ -1,6 +1,7 @@
 const express = require('express'),
       Litter = require('../models/litter'),
       Dog = require('../models/dog'),
+      Award = require('../models/award'),
       DynamicContent = require('../models/dynamic-content'),
       mongoose = require('mongoose'),
       Schema = mongoose.Schema,
@@ -8,7 +9,8 @@ const express = require('express'),
       form = require('express-form')
         .configure({dataSources: ['body', 'files', 'query', 'params']}),
       field = form.field,
-      Filter = require('../helpers/request-filter')
+      Filter = require('../helpers/request-filter'),
+      i18n = require("i18n")
 
 const api = express.Router()
 api.route('/litters')
@@ -52,6 +54,95 @@ api.route('/litters/:litter')
     })
   })
 
+api.route('/search/criterias')
+  .get((req, res) => {
+    Dog.find().populate('sire dam images images.content awards').exec((err, dogs) => {
+      if (err) {
+        res.status(500)
+        res.json({error: true, message: 'error.dogs.database'})
+      } else {
+        Award.find({}).exec((err, awards) => {
+          if (err) {
+            res.status(500)
+            res.json({error: true, message: 'error.dogs.database'})
+          } else {
+            let litters = [...new Set(dogs.filter(dog => {
+              return dog.litter && dog.litter !== 'undefined'
+            }).map(dog => {
+              return {title: dog.litter.name, value: dog.litter._id}
+            }))]
+
+            let sires = [...new Set(dogs.filter(dog => {
+              return dog.sire && dog.sire !== 'undefined'
+            }).map(dog => {
+              return {title: dog.sire.name, value: dog.sire._id}
+            }))]
+
+            let dams = [...new Set(dogs.filter(dog => {
+              return dog.dam && dog.dam !== 'undefined'
+            }).map(dog => {
+              return {title: dog.dam.name, value: dog.dam._id}
+            }))]
+
+            let years = [...new Set(dogs.map(dog => {
+              return dog.dateOfBirth.getFullYear()
+            }))].map(year => {
+              return {title: year, value: year}
+            })
+
+            let disciplines = Dog.DISCIPLINES.map(discipline => {
+              return {title: discipline.title, value: discipline.id}
+            })
+
+            let genders = [{title: i18n.__('admin.dogs.gender.female'), value: Dog.GENDERS.FEMALE}, {title: i18n.__('admin.dogs.gender.male'), value: Dog.GENDERS.MALE}]
+
+            let colors = [...new Set(dogs.filter(dog => {
+              return !!dog.color && typeof dog.color !== 'undefined'
+            }).map(dog => {
+              return dog.color
+            }))].map(color => {
+              return {title: color, value: color}
+            })
+
+            let titles = awards.filter(award => {
+              return award.type === Award.TYPES.TITLE
+            }).map(award => {
+              return {value: award._id, title: award.title}
+            })
+
+            let certificates = awards.filter(award => {
+              return award.type === Award.TYPES.CERTIFICATE
+            }).map(award => {
+              return {value: award._id, title: award.title}
+            })
+
+            const now = new Date();
+            let ages = years.map(year => {
+              const age = now.getFullYear() - year.value
+              return {title: age, value: age}
+            })
+
+            const criterias = {
+              litters: litters,
+              sires: sires,
+              dams: dams,
+              years: years,
+              disciplines: disciplines,
+              genders: genders,
+              colors: colors,
+              titles: titles,
+              certificates: certificates,
+              ages: ages
+            }
+
+            res.status(200)
+            res.json(criterias)
+          }
+        })
+      }
+    })
+  })
+
 api.route('/dogs')
   .get((req, res) => {
     filterForm = form(
@@ -59,13 +150,13 @@ api.route('/dogs')
       field('puppy').ifNull('all'),
       field('discipline').ifNull('all'),
       field('title').ifNull(false),
-      field('certification').ifNull(false),
+      field('certificate').ifNull(false),
       field('gender').ifNull('all'),
       field('color').ifNull('all'),
-      field('age').ifNull('all'),
       field('litter').ifNull(false),
       field('sire').ifNull(false),
-      field('dam').ifNull(false)
+      field('dam').ifNull(false),
+      field('year').ifNull(false)
     )(req, res)
 
     const handledForm = req.form
@@ -87,11 +178,11 @@ api.route('/dogs')
         criteria: {$eq: handledForm.discipline},
         shouldFilter: handledForm.discipline !== 'all' && handledForm.discipline !== ''
       },
-      title: {
-        criteria: handledForm.title,
-      },
-      certification: {
-        criteria: handledForm.certification,
+      awards: {
+        criteria: {$in: [handledForm.title, handledForm.certificate].filter(object => {
+          return !!object
+        })},
+        shouldFilter: handledForm.title || handledForm.certificate
       },
       gender: {
         criteria: {$eq: handledForm.gender},
@@ -101,10 +192,10 @@ api.route('/dogs')
         criteria: {$regex: handledForm.color, $options: 'i'},
         shouldFilter: handledForm.color !== 'all' && handledForm.color !== ''
       },
-      age: {
-        criteria: {$eq: handledForm.age},
-        shouldFilter: handledForm.age !== 'all' && handledForm.age !== ''
-      },
+      dateOfBirth: {
+        criteria: {$gte: new Date(handledForm.year, 1, 0), $lte: new Date(handledForm.year, 12, 0)},
+        shouldFilter: handledForm.year
+      }
     }, handledForm)
 
     Dog.find(filter).populate('sire dam images images.content awards').exec((err, dogs) => {
@@ -148,7 +239,7 @@ api.route('/dogs/by-litter/:litter')
 
 api.route('/dogs/:dog')
   .get((req, res) => {
-    Dog.findById({_id: req.params.dog}).populate('sire dam images images.content awards').lean().exec((err, dog) => {
+    Dog.findById({_id: req.params.dog}).populate('sire dam images images.content sire.images dam.images sire.images.content dam.images.content awards').lean().exec((err, dog) => {
       if (err) {
         res.status(500)
         res.json({error: true, message: 'error.dog.database'})
@@ -169,7 +260,7 @@ api.route('/dynamic-content/list')
         res.status(200)
         const mapped = {}
         dynamicContents.forEach(item => {
-          mapped[item.title] = item
+          mapped[item.identifier] = item
         })
         res.json(mapped)
       }

@@ -19,6 +19,15 @@ const routes = (loggedMiddleware) => {
           }).length > 0,
           breeding: dynamicContents.filter((item) => {
             return item.identifier == DynamicContent.TYPES.BREEDING
+          }).length > 0,
+          training: dynamicContents.filter((item) => {
+            return item.identifier == DynamicContent.TYPES.TRAINING
+          }).length > 0,
+          detection: dynamicContents.filter((item) => {
+            return item.identifier == DynamicContent.TYPES.DETECTION
+          }).length > 0,
+          security: dynamicContents.filter((item) => {
+            return item.identifier == DynamicContent.TYPES.SECURITY
           }).length > 0
         }
 

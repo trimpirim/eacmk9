@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 let connection = false
 
+mongoose.set('debug', false)
+
 module.exports = function(username, password, host, database, port) {
   let conenctionPart = 'mongodb://' + username + ':' + password + '@' + host
 
