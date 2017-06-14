@@ -10,9 +10,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
-          <div class="row info-row-separator d-flex f-wrap">
+          <div class="row info-row-separator">
             <!-- PUPPY INFO --> 
-            <div class="col-xs-6 d-flex f-direction-column">
+            <div class="col-xs-6">
               <h1 class="info-header">
                 {{ puppy.name }} ({{ litter.name }})
               </h1>
@@ -59,7 +59,7 @@
             <!-- PUPPY INFO END --> 
 
             <!-- PUPPY IMAGES --> 
-            <div class="col-xs-6 d-flex f-direction-column">
+            <div class="col-xs-6">
               <div class="info-content info-content-without-header">
                 <div v-if="puppy.images.length > 0">
                   <img :src="'/images/display?image=' + puppy.images[0].content" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
@@ -76,11 +76,11 @@
         </div>
 
         <!-- LINEAGE --> 
-        <div class="col-xs-12">
+        <div class="col-xs-6">
           <div class="row info-row-separator">
             <div class="col-xs-12">
               <div class="row d-flex f-wrap">
-                <div class="col-xs-6 d-flex f-direction-column">
+                <div class="col-xs-12 d-flex f-direction-column">
                   <div class="row">
                     <div class="col-xs-12">
                       <h2 class="info-header">
@@ -104,8 +104,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-xs-6 d-flex f-direction-column">
                   <div class="info-content info-content-without-header">
                     <div class="lineage-tree">
                       <div class="branch branch-root">
@@ -202,9 +200,9 @@
           <!-- LINEAGE END --> 
 
         <!-- PUPPIES LIST OF LITTER -->
-        <div class="col-xs-12">
+        <div class="col-xs-6">
           <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
               <h2 class="info-header">
                 Puppy List and Availability
               </h2>

@@ -1,8 +1,8 @@
 <template>
   <div class="vue-template-wrapper" v-if="dog">
     <div class="container-fluid">
-      <div class="row d-flex f-wrap">
-        <div class="col-xs-12 col-sm-6 d-flex f-direction-column info-row-separator">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 info-row-separator">
           <h1 class="info-header">
             {{ dog.name }}
           </h1>
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 d-flex f-direction-column info-row-separator" v-if="dog.images.length > 0">
+        <div class="col-xs-12 col-sm-6 info-row-separator" v-if="dog.images.length > 0">
           <div class="info-content info-content-without-header">
             <img class="img-responsive center-block" :src="'/images/display?image=' + dog.images[0].content" width="500" height="auto" style="height: 300px; display: block; margin: 0 auto; padding: 10px;"/>
             <div class="row">
@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 d-flex f-direction-column info-row-separator">
+        <div class="col-xs-12 col-sm-6 info-row-separator">
           <h2 class="info-header">
             Planned breedings
           </h2>

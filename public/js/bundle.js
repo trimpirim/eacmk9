@@ -12368,9 +12368,9 @@
 	  }, [_c('div', {
 	    staticClass: "container-fluid"
 	  }, [_c('div', {
-	    staticClass: "row d-flex f-wrap"
+	    staticClass: "row"
 	  }, [_c('div', {
-	    staticClass: "col-xs-12 col-sm-6 d-flex f-direction-column info-row-separator"
+	    staticClass: "col-xs-12 col-sm-6 info-row-separator"
 	  }, [_c('h1', {
 	    staticClass: "info-header"
 	  }, [_vm._v("\n          " + _vm._s(_vm.dog.name) + "\n        ")]), _vm._v(" "), _c('div', {
@@ -12398,7 +12398,7 @@
 	      }
 	    })
 	  }))]) : _vm._e()])]), _vm._v(" "), (_vm.dog.images.length > 0) ? _c('div', {
-	    staticClass: "col-xs-12 col-sm-6 d-flex f-direction-column info-row-separator"
+	    staticClass: "col-xs-12 col-sm-6 info-row-separator"
 	  }, [_c('div', {
 	    staticClass: "info-content info-content-without-header"
 	  }, [_c('img', {
@@ -12428,7 +12428,7 @@
 	  }))])]) : _vm._e(), _vm._v(" "), _vm._m(0)])])]) : _vm._e()
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
-	    staticClass: "col-xs-12 col-sm-6 d-flex f-direction-column info-row-separator"
+	    staticClass: "col-xs-12 col-sm-6 info-row-separator"
 	  }, [_c('h2', {
 	    staticClass: "info-header"
 	  }, [_vm._v("\n          Planned breedings\n        ")]), _vm._v(" "), _c('div', {
@@ -13045,8 +13045,6 @@
 	//
 	//
 	//
-	//
-	//
 
 	var Puppy = {
 	  data: function data() {
@@ -13129,9 +13127,9 @@
 	  }, [_c('div', {
 	    staticClass: "col-xs-12"
 	  }, [_c('div', {
-	    staticClass: "row info-row-separator d-flex f-wrap"
+	    staticClass: "row info-row-separator"
 	  }, [_c('div', {
-	    staticClass: "col-xs-6 d-flex f-direction-column"
+	    staticClass: "col-xs-6"
 	  }, [_c('h1', {
 	    staticClass: "info-header"
 	  }, [_vm._v("\n              " + _vm._s(_vm.puppy.name) + " (" + _vm._s(_vm.litter.name) + ")\n            ")]), _vm._v(" "), _c('div', {
@@ -13163,7 +13161,7 @@
 	      "innerHTML": _vm._s(_vm.puppy.evaluation)
 	    }
 	  })])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6 d-flex f-direction-column"
+	    staticClass: "col-xs-6"
 	  }, [_c('div', {
 	    staticClass: "info-content info-content-without-header"
 	  }, [(_vm.puppy.images.length > 0) ? _c('div', [_c('img', {
@@ -13191,7 +13189,7 @@
 	      }
 	    })])
 	  }))]) : _vm._e()])])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-12"
+	    staticClass: "col-xs-6"
 	  }, [_c('div', {
 	    staticClass: "row info-row-separator"
 	  }, [_c('div', {
@@ -13199,7 +13197,7 @@
 	  }, [_c('div', {
 	    staticClass: "row d-flex f-wrap"
 	  }, [_c('div', {
-	    staticClass: "col-xs-6 d-flex f-direction-column"
+	    staticClass: "col-xs-12 d-flex f-direction-column"
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
@@ -13236,9 +13234,7 @@
 	    attrs: {
 	      "src": '/images/display?image=' + _vm.dam.images[0].content
 	    }
-	  }) : _vm._e()])])])])])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6 d-flex f-direction-column"
-	  }, [_c('div', {
+	  }) : _vm._e()])])])])])]), _vm._v(" "), _c('div', {
 	    staticClass: "info-content info-content-without-header"
 	  }, [_c('div', {
 	    staticClass: "lineage-tree"
@@ -13313,11 +13309,11 @@
 	  }, [_c('div', {
 	    staticClass: "label"
 	  }, [_vm._v("\n                                  " + _vm._s(_vm.dam.dam.dam.name) + "\n                                ")])]) : _vm._e()]) : _vm._e()]) : _vm._e()]) : _vm._e()])])])])])])])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-12"
+	    staticClass: "col-xs-6"
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12"
 	  }, [_c('h2', {
 	    staticClass: "info-header"
 	  }, [_vm._v("\n              Puppy List and Availability\n            ")]), _vm._v(" "), _c('div', {
