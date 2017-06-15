@@ -15,6 +15,12 @@ const routes = (loggedMiddleware) => {
       Dog.find({}).sort([['createdAt', 'descending']]).exec((err, dogs) => {
         res.locals.additionals = {
           litters: litters,
+          dams: dogs.filter(dog => {
+            return dog.gender === Dog.GENDERS.FEMALE
+          }),
+          sires: dogs.filter(dog => {
+            return dog.gender === Dog.GENDERS.MALE
+          }),
           dogs: dogs
         }
 
@@ -54,7 +60,7 @@ const routes = (loggedMiddleware) => {
     })
     .get(loggedMiddleware, (req, res) => {
       res.status(200);
-      res.render('admin/dog/create', {dog: res.locals.dogObject, dogs: res.locals.additionals.dogs, litters: res.locals.additionals.litters});
+      res.render('admin/dog/create', {dog: res.locals.dogObject, dogs: res.locals.additionals.dogs, dams: res.locals.additionals.dams, sires: res.locals.additionals.sires, litters: res.locals.additionals.litters});
     })
     .post([loggedMiddleware], (req, res, next) => {
       const puppy = !!req.body.puppy
@@ -67,7 +73,7 @@ const routes = (loggedMiddleware) => {
       res.locals.dogObject.set(req.form)
 
       if (!req.form.isValid) {
-        return res.render('admin/dog/create', {dog: res.locals.dogObject, form: req.form, dogs: res.locals.additionals.dogs, litters: res.locals.additionals.litters})
+        return res.render('admin/dog/create', {dog: res.locals.dogObject, form: req.form, dogs: res.locals.additionals.dogs, dams: res.locals.additionals.dams, sires: res.locals.additionals.sires, litters: res.locals.additionals.litters})
       }
 
       res.locals.dogObject.save((err, dog) => {
@@ -78,7 +84,7 @@ const routes = (loggedMiddleware) => {
 
   router.route('/edit/:id')
     .all(loggedMiddleware, (req, res, next) => {
-      Dog.findById({_id: req.params.id}).populate('images awards').exec((err, dog) => {
+      Dog.findById({_id: req.params.id}).populate('images awards breedings breedings.dog').exec((err, dog) => {
         if (err) throw err
         res.locals.dogObject = dog
         allDogsAndLitters(res, next)
@@ -86,7 +92,7 @@ const routes = (loggedMiddleware) => {
     })
     .get(loggedMiddleware, (req, res) => {
       res.status(200);
-      res.render('admin/dog/edit', {dog: res.locals.dogObject, dogs: res.locals.additionals.dogs, litters: res.locals.additionals.litters, form: req.form});
+      res.render('admin/dog/edit', {dog: res.locals.dogObject, dogs: res.locals.additionals.dogs, dams: res.locals.additionals.dams, sires: res.locals.additionals.sires, litters: res.locals.additionals.litters, form: req.form});
     })
     .post([loggedMiddleware], (req, res, next) => {
       const puppy = !!res.locals.dogObject.puppy
@@ -98,7 +104,7 @@ const routes = (loggedMiddleware) => {
       res.locals.dogObject.set(req.form)
 
       if (!req.form.isValid) {
-        return res.render('admin/dog/edit', {dog: res.locals.dogObject, dogs: res.locals.additionals.dogs, litters: res.locals.additionals.litters, form: req.form})
+        return res.render('admin/dog/edit', {dog: res.locals.dogObject, dogs: res.locals.additionals.dogs, dams: res.locals.additionals.dams, sires: res.locals.additionals.sires, litters: res.locals.additionals.litters, form: req.form})
       }
 
       res.locals.dogObject.save((err, dog) => {
@@ -290,6 +296,68 @@ const routes = (loggedMiddleware) => {
       res.locals.dog.save()
 
       res.redirect((filtered.length > 0) ? 200 : 400, '/admin/dog/edit/' + res.locals.dog._id)
+    })
+
+  //breedings
+  router.route('/breedings/:dog/add')
+    .all(loggedMiddleware, (req, res, next) => {
+      Dog.findById({_id: req.params.dog}).populate('breedings breedings.dog').exec((err, dog) => {
+        if (err) throw err
+        res.locals.dog = dog
+        Dog.find({}).sort([['createdAt', 'descending']]).exec((err, dogs) => {
+          if (err) throw err
+          res.locals.dogs = dogs.filter(dog => {
+            return dog.id !== res.locals.dog.id && res.locals.dog.breedings.filter(breeding => {
+              return breeding.dog.id == dog.id
+            }).length == 0
+          })
+          next()
+        })
+      })
+    })
+    .get(loggedMiddleware, (req, res) => {
+      res.status(200)
+      res.render('admin/dog/breedings/add', {dog: res.locals.dog, dogs: res.locals.dogs, breeding: {dog: null, text: ''}})
+    })
+    .post([loggedMiddleware], (req, res, next) => {
+      form.breeding(req, res)
+
+      if (!req.form.isValid) {
+        return res.render('admin/dog/breedings/add', {dog: res.locals.dog, dogs: res.locals.dogs, form: req.form, breeding: req.form})
+      } else {
+        Dog.findById({_id: req.form.bredWith}, (err, dog) => {
+          if (err) throw err
+
+          if (res.locals.dog.breedings.filter(breeding => {
+            return breeding.dog._id == req.form.bredWidth
+          }).length == 0) {
+            res.locals.dog.breedings.push({dog: dog, text: req.form.text})
+            res.locals.dog.save()
+
+            dog.breedings.push({dog: res.locals.dog, text: req.form.text})
+            dog.save()
+          }
+
+          res.redirect(200, '/admin/dog/edit/' + res.locals.dog._id)
+        })
+      }
+    })
+
+  router.route('/breedings/:dog/delete/:breeding')
+    .all(loggedMiddleware, (req, res, next) => {
+      Dog.findById({_id: req.params.dog}).exec((err, dog) => {
+        if (err) throw err
+        res.locals.dog = dog
+        next()
+      })
+    })
+    .get(loggedMiddleware, (req, res) => {
+      const breedings = res.locals.dog.breedings.splice(req.params.breeding + 1, 1)
+
+      res.locals.dog.breedings = breedings
+      res.locals.dog.save()
+
+      res.redirect(200, '/admin/dog/edit/' + res.locals.dog._id)
     })
 
   return router;

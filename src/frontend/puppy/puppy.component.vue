@@ -1,12 +1,5 @@
 <template>
   <div class="vue-template-wrapper" v-if="puppy && litter">
-    <!--<div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-          <h1 class="info-header" v-html="litter.name"></h1>
-        </div>
-      </div>
-    </div>-->
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
@@ -225,132 +218,6 @@
         <!-- PUPPIES LIST OF LITTER END -->
       </div>
     </div>
-    <!--
-    <div class="container-fluid cont-pup" v-if="litter">
-      <div class="row">
-        <div class="col-xs-6">
-          <div class="col-describe">
-            <ul class="describe">
-              <li class="name">
-                <strong v-html="litter.name"></strong>
-              </li>
-            </ul>
-            <div v-if="puppy.images.length > 0">
-              <img :src="'/images/display?image=' + puppy.images[0].content" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
-              <div class="row row-pups">
-                <div class="col-xs-3" v-for="image in puppy.images">
-                  <img class="img-pup" :src="'/images/display?image=' + image.content" style="cursor: pointer;" onclick="showImage('img/Puppy1.jpg');" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <h5 style="padding:20px;"><strong>Puppy List and Availability</strong></h5>
-          <div class="row">
-            <div class="col-xs-3" v-for="puppy in puppies">
-              <img class="img-pup" :src="'/images/display?image=' + puppy.images[0].content" v-if="puppy.images.length > 0" style="cursor: pointer;" onclick="showImage('img/puppy.jpg');" />
-              <router-link :to="{name: 'puppy', params: {id: puppy._id}}">
-                {{ litter.name }}
-              </router-link>
-              <small class="availability-unavailable" v-if="!puppy.available"></small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xs-6 col-description" style="border-left: 1px solid white; min-height: 500px;">
-          <h4 style="background-color: none; padding: 10px;"> <strong>Description</strong> </h4>
-          <p style="padding: 10px;" v-html="puppy.bio"></p>
-          <ul style="padding: 10px;">
-            <li style="padding-bottom: 5px;"><strong>Date Of Birth: </strong><span>{{ puppy.dateOfBirth|toDate }}</span></li>
-            <li style="padding-bottom: 5px;"><strong>Color: </strong><span v-html="puppy.color"></span></li>
-            <li style="padding-bottom: 5px;"><strong>Litter: </strong><span v-html="litter.name"></span></li>
-            <li style="padding-bottom: 5px;"><strong>Evaluation:</strong><span v-html="puppy.evaluation"></span></li>
-          </ul>
-          <div class="cont-lineage" v-if="hasLineage()">
-            <div class="row">
-              <h5 class="lineage-h">Lineage</h5>
-              <div class="col-xs-6 col-mom" style=" border-bottom: 1px solid white; background-color: rgba(52, 73, 94, 0.5);">
-                <img class="img-lineage-mother" :src="'/images/display?image=' + sire.images[0].content" v-if="sire.images.length > 0">
-              </div>
-              
-              <div class="col-xs-6 col-dad" style=" border-bottom: 1px solid white; background-color: rgba(52, 73, 94, 0.5);">
-                <img class="img-lineage-father" :src="'/images/display?image=' + dam.images[0].content" v-if="dam.images.length > 0">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-3">
-                <div class="gran-sire-dam">
-                  {{ sire.name }}
-                </div>
-                <div class="row">
-                  <div class="col-xs-6 col-great-sire" v-if="sire.sire">
-                    <div class="great-gran-sire"> 
-                      {{ sire.sire.name }}
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-great-dam" v-if="sire.dam">
-                    <div class="great-gran-dam">
-                      {{ sire.dam.name }} 
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
-              
-
-              <div class="col-xs-3">
-                <div class="gran-sire-dam">
-                  {{ dam.name }}
-                </div>
-                <div class="row">
-                  <div class="col-xs-6 col-great-sire" v-if="dam.sire">
-                    <div class="great-gran-sire">
-                      {{ dam.sire.name }}
-                    </div>
-                  </div>
-                  <div class="col-xs-6 col-great-dam" v-if="dam.dam">
-                    <div class="great-gran-dam">
-                      {{ dam.dam.name }}
-                    </div>
-                  </div>
-                  
-                </div>
-
-              </div>
-
-              <div class="col-xs-3">
-                <div class="gran-sire-dam">
-                  Gran Sire
-                </div>
-                <div class="row">
-                  <div class="col-xs-6 col-great-sire">
-                    <div class="great-gran-sire"> Great Gran Sire</div>
-                  </div>
-                  <div class="col-xs-6 col-great-dam">
-                    <div class="great-gran-dam"> Great Gran Dam</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-3">
-                <div class="gran-sire-dam">
-                  Gran Dam
-                </div>
-                <div class="row">
-                  <div class="col-xs-6 col-great-sire">
-                    <div class="great-gran-sire"> Great Gran Sire</div>
-                  </div>
-                  <div class="col-xs-6 col-great-dam">
-                    <div class="great-gran-dam"> Great Gran Dam</div>
-                  </div>
-                  
-                </div>
-
-              </div>
-            </div>      
-          </div>
-        </div>
-      </div>
-    </div>  
-    -->
   </div>
 </template>
 
@@ -366,7 +233,6 @@
       }
     },
     created() {
-      console.log("A")
       this.loadData()
     },
     methods: {
@@ -374,7 +240,6 @@
         return !!this.sire && !!this.dam
       },
       loadData() {
-        console.log(this.$route.params.id)
         this.$http.get('/api/dogs/' + this.$route.params.id).then(response => {
           response.json().then(json => {
             this.puppy = json

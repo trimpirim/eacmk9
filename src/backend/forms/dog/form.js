@@ -52,6 +52,10 @@ const forms = {
   award: form(
     field('award').trim().required('', 'admin.dogs.error.award.required')
   ),
+  breeding: form(
+    field('bredWith').trim().required('', 'admin.dogs.error.breedings.dog.required'),
+    field('text').trim().required('', 'admin.dogs.error.breedings.text.required')
+  ),
   filter: {
     form: form(
       field('name').trim().ifNull(false),

@@ -51,17 +51,14 @@
         </div>
         <div class="col-xs-12 col-sm-6 info-row-separator">
           <h2 class="info-header">
-            Planned breedings
+            Breedings
           </h2>
           <div class="info-content">
             <ul>
-              <li><a href=""><strong style="border-bottom: 1px solid white;">Nemesis</strong></a> x <a href=""><strong style="border-bottom: 1px solid white;">Other Malinois</strong></a> text here text here text here text heretext heretext heretext heretext here</li>
-            </ul>
-            <ul>
-              <li><a href=""><strong style="border-bottom: 1px solid white;">Nemesis</strong></a> x <a href=""><strong style="border-bottom: 1px solid white;">Other Malinois</strong></a> text here text here text here</li>
-            </ul>
-            <ul>
-              <li><a href=""><strong style="border-bottom: 1px solid white;">Nemesis</strong></a> x <a href=""><strong style="border-bottom: 1px solid white;">Other Malinois</strong></a> text here text here text here</li>
+              <li v-for="breeding in dog.breedings">
+                <router-link :to="{name: 'our-dog', params: {dog: dog._id}}"><strong>{{ dog.name }}</strong></router-link> x <router-link :to="{name: 'our-dog', params: {dog: breeding.dog._id}}"><strong>{{ breeding.dog.name }}</strong></router-link>
+                {{ breeding.text }}
+              </li>
             </ul>
           </div>
         </div>
@@ -78,19 +75,31 @@
       }
     },
     created() {
-      this.$http.get('/api/dogs/' + this.$route.params.dog).then(response => {
-        response.json().then(json => {
-          this.dog = json
-        })
-      }, error => {
+      this.loadData((json) => { this.dog = json })
+    },
+    methods: {
+      loadData(callback = (json) => {}) {
+        this.$http.get('/api/dogs/' + this.$route.params.dog).then(response => {
+          response.json().then(json => {
+            callback.apply(null, [json])
+          })
+        }, error => {
 
-      })
+        })
+      }
     },
     filters: {
       toDate: function(date) {
         return moment(date).format('YYYY MM DD')
       }
     },
+    watch: {
+      '$route': function(to, from) {
+        if (from.params.dog !== to.params.dog) {
+          return this.loadData((json) => { this.dog = json })
+        }
+      }
+    }
   }
 
   export default OurDog

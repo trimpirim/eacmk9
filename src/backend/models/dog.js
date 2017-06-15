@@ -25,6 +25,12 @@ const schema = new Schema({
   ],
   awards: [
     SchemaHelper.withDefaultAndRef(ObjectId, new Award(), 'Award')
+  ],
+  breedings: [
+    {
+      dog: SchemaHelper.withRef(ObjectId, 'Dog'),
+      text: SchemaHelper.withDefault(String, '')
+    }
   ]
 })
 

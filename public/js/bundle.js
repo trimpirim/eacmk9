@@ -12329,9 +12329,6 @@
 	//
 	//
 	//
-	//
-	//
-	//
 
 	var OurDog = {
 	  data: function data() {
@@ -12342,16 +12339,36 @@
 	  created: function created() {
 	    var _this = this;
 
-	    this.$http.get('/api/dogs/' + this.$route.params.dog).then(function (response) {
-	      response.json().then(function (json) {
-	        _this.dog = json;
-	      });
-	    }, function (error) {});
+	    this.loadData(function (json) {
+	      _this.dog = json;
+	    });
 	  },
 
+	  methods: {
+	    loadData: function loadData() {
+	      var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (json) {};
+
+	      this.$http.get('/api/dogs/' + this.$route.params.dog).then(function (response) {
+	        response.json().then(function (json) {
+	          callback.apply(null, [json]);
+	        });
+	      }, function (error) {});
+	    }
+	  },
 	  filters: {
 	    toDate: function toDate(date) {
 	      return moment(date).format('YYYY MM DD');
+	    }
+	  },
+	  watch: {
+	    '$route': function $route(to, from) {
+	      var _this2 = this;
+
+	      if (from.params.dog !== to.params.dog) {
+	        return this.loadData(function (json) {
+	          _this2.dog = json;
+	        });
+	      }
 	    }
 	  }
 	};
@@ -12425,64 +12442,34 @@
 	        "src": '/images/display?image=' + image.content
 	      }
 	    })])
-	  }))])]) : _vm._e(), _vm._v(" "), _vm._m(0)])])]) : _vm._e()
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
+	  }))])]) : _vm._e(), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-12 col-sm-6 info-row-separator"
 	  }, [_c('h2', {
 	    staticClass: "info-header"
-	  }, [_vm._v("\n          Planned breedings\n        ")]), _vm._v(" "), _c('div', {
+	  }, [_vm._v("\n          Breedings\n        ")]), _vm._v(" "), _c('div', {
 	    staticClass: "info-content"
-	  }, [_c('ul', [_c('li', [_c('a', {
-	    attrs: {
-	      "href": ""
-	    }
-	  }, [_c('strong', {
-	    staticStyle: {
-	      "border-bottom": "1px solid white"
-	    }
-	  }, [_vm._v("Nemesis")])]), _vm._v(" x "), _c('a', {
-	    attrs: {
-	      "href": ""
-	    }
-	  }, [_c('strong', {
-	    staticStyle: {
-	      "border-bottom": "1px solid white"
-	    }
-	  }, [_vm._v("Other Malinois")])]), _vm._v(" text here text here text here text heretext heretext heretext heretext here")])]), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
-	    attrs: {
-	      "href": ""
-	    }
-	  }, [_c('strong', {
-	    staticStyle: {
-	      "border-bottom": "1px solid white"
-	    }
-	  }, [_vm._v("Nemesis")])]), _vm._v(" x "), _c('a', {
-	    attrs: {
-	      "href": ""
-	    }
-	  }, [_c('strong', {
-	    staticStyle: {
-	      "border-bottom": "1px solid white"
-	    }
-	  }, [_vm._v("Other Malinois")])]), _vm._v(" text here text here text here")])]), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
-	    attrs: {
-	      "href": ""
-	    }
-	  }, [_c('strong', {
-	    staticStyle: {
-	      "border-bottom": "1px solid white"
-	    }
-	  }, [_vm._v("Nemesis")])]), _vm._v(" x "), _c('a', {
-	    attrs: {
-	      "href": ""
-	    }
-	  }, [_c('strong', {
-	    staticStyle: {
-	      "border-bottom": "1px solid white"
-	    }
-	  }, [_vm._v("Other Malinois")])]), _vm._v(" text here text here text here")])])])])
-	}]}
+	  }, [_c('ul', _vm._l((_vm.dog.breedings), function(breeding) {
+	    return _c('li', [_c('router-link', {
+	      attrs: {
+	        "to": {
+	          name: 'our-dog',
+	          params: {
+	            dog: _vm.dog._id
+	          }
+	        }
+	      }
+	    }, [_c('strong', [_vm._v(_vm._s(_vm.dog.name))])]), _vm._v(" x "), _c('router-link', {
+	      attrs: {
+	        "to": {
+	          name: 'our-dog',
+	          params: {
+	            dog: breeding.dog._id
+	          }
+	        }
+	      }
+	    }, [_c('strong', [_vm._v(_vm._s(breeding.dog.name))])]), _vm._v("\n              " + _vm._s(breeding.text) + "\n            ")], 1)
+	  }))])])])])]) : _vm._e()
+	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
@@ -12912,139 +12899,6 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 
 	var Puppy = {
 	  data: function data() {
@@ -13057,7 +12911,6 @@
 	    };
 	  },
 	  created: function created() {
-	    console.log("A");
 	    this.loadData();
 	  },
 
@@ -13068,7 +12921,6 @@
 	    loadData: function loadData() {
 	      var _this = this;
 
-	      console.log(this.$route.params.id);
 	      this.$http.get('/api/dogs/' + this.$route.params.id).then(function (response) {
 	        response.json().then(function (json) {
 	          _this.puppy = json;

@@ -239,7 +239,7 @@ api.route('/dogs/by-litter/:litter')
 
 api.route('/dogs/:dog')
   .get((req, res) => {
-    Dog.findById({_id: req.params.dog}).populate('sire dam images images.content sire.images dam.images sire.images.content dam.images.content awards').lean().exec((err, dog) => {
+    Dog.findById({_id: req.params.dog}).populate('sire dam images images.content sire.images dam.images sire.images.content dam.images.content awards breedings breedings.dog').exec((err, dog) => {
       if (err) {
         res.status(500)
         res.json({error: true, message: 'error.dog.database'})

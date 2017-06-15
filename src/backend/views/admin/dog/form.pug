@@ -29,11 +29,11 @@ include ../../form-helpers/select.pug
   if form && form.getErrors('gender').length > 0
     div.error= __(form.getErrors('gender')[0])
 .form-group
-  +select(`${__('admin.dogs.sire')}`, 'sire', dogs.map(function(object) { return {value: object._id, title: object.name, selected: object.id == dog.sire}}), {value: '', title: __('admin.dogs.sire.select')})
+  +select(`${__('admin.dogs.sire')}`, 'sire', sires.map(function(object) { return {value: object._id, title: object.name, selected: object.id == dog.sire}}), {value: '', title: __('admin.dogs.sire.select')})
   if form && form.getErrors('sire').length > 0
     div.error= __(form.getErrors('sire')[0])
 .form-group
-  +select(`${__('admin.dogs.dam')}`, 'dam', dogs.map(function(object) { return {value: object._id, title: object.name, selected: object.id == dog.dam}}), {value: '', title: __('admin.dogs.dam.select')})
+  +select(`${__('admin.dogs.dam')}`, 'dam', dams.map(function(object) { return {value: object._id, title: object.name, selected: object.id == dog.dam}}), {value: '', title: __('admin.dogs.dam.select')})
   if form && form.getErrors('dam').length > 0
     div.error= __(form.getErrors('dam')[0])
 .form-group

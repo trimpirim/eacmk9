@@ -1,0 +1,24 @@
+.row
+  .col-xs-12
+    .list.list-inner
+      .row
+        .col-xs-12
+          .list-header #{__('admin.dogs.breedings')}
+      each breeding, index in dog.breedings
+        .row
+          .col-xs-12
+            .list-item
+              .row
+                .col-xs-11.t-left= breeding.dog.name
+                .col-xs-1
+                  a(href=`/admin/dog/breedings/${dog._id}/delete/${index}`)
+                    i.glyphicon.glyphicon-trash
+
+      else
+        .row
+          .col-xs-12
+            .list-item #{__('admin.dogs.breedings.no_breedings')}
+      .row
+        .col-xs-12
+          .list-item.clearfix
+            a.btn.btn-primary.pull-right(href=`/admin/dog/breedings/${dog._id}/add`) #{__('admin.dogs.breedings.add')}

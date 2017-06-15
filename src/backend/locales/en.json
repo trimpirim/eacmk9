@@ -105,5 +105,15 @@
 	"admin.dogs.award": "Award",
 	"admin.dogs.award.select": "Select award",
 	"admin.dogs.error.award.required": "Award is required",
-	"admin.awards.edit": "admin.awards.edit"
+	"admin.awards.edit": "Edit award",
+	"admin.dogs.breedings": "Breedings",
+	"admin.dogs.breedings.no_breedings": "No breedings",
+	"admin.dogs.breedings.add": "Add breeding",
+	"admin.dogs.breeding.add": "Add breeding",
+	"admin.dogs.breedings.dog": "Dog",
+	"admin.dogs.breeding.dog.select": "Select dog",
+	"admin.dogs.breedings.text": "Text",
+	"admin.dogs.error.breedings.text.required": "Text is required",
+	"admin.dogs.error.breedings.dog.required": "Dog is required",
+	"admin.awards.no_awards": "No awards"
 }
