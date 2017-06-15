@@ -13,6 +13,7 @@ Vue.use(VueResource);
 
 const routes = [
   {path: '/our-dogs', name: 'our-dogs', component: OurDogs},
+  {path: '/', name: 'index', component: Home},
   {path: '/home', name: 'home', component: Home},
   {path: '/puppy/:id', name: 'puppy', component: Puppy},
   {path: '/our-dog/:dog', name: 'our-dog', component: OurDog},

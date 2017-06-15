@@ -10,24 +10,34 @@
             <div class="row">
               <div class="col-xs-12">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-3" v-for="(searchableObject, key) in searchableObjects" v-if="searchableObject.items.length > 0">
-                    <div class="dropdown-search">
-                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        {{ searchableObject.selectedTitleOrDefaultTitle() }}
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="javascript:void(0);" v-on:click="changeFilter(key, null)">
-                            {{ searchableObject.title }}
-                          </a>
-                        </li>
-                        <li v-for="item in searchableObject.items">
-                          <a href="javascript:void(0);" v-on:click="changeFilter(key, item.value)">
-                            {{ item.title }}
-                          </a>
-                        </li>
-                      </ul>
+                  <div class="col-xs-12 visible-xs visible-sm">
+                    <button class="btn btn-primary btn-rounded-transparent u-full-width" type="button" data-toggle="collapse" data-target="#filter">
+                      Toggle filter
+                      <div class=""
+                    </button>
+                  </div>
+                </div>
+                <div id="filter" class="collapse filter-content">
+                  <div class="row filter-content-list">
+                    <div class="col-xs-12 col-sm-3" v-for="(searchableObject, key) in searchableObjects" v-if="searchableObject.items.length > 0">
+                      <div class="dropdown-search">
+                        <button class="btn btn-primary btn-rounded-transparent dropdown-toggle" type="button" data-toggle="dropdown">
+                          {{ searchableObject.selectedTitleOrDefaultTitle() }}
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="javascript:void(0);" v-on:click="changeFilter(key, null)">
+                              {{ searchableObject.title }}
+                            </a>
+                          </li>
+                          <li v-for="item in searchableObject.items">
+                            <a href="javascript:void(0);" v-on:click="changeFilter(key, item.value)">
+                              {{ item.title }}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>

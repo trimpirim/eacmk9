@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
   <nav class="navbar nav-inverse nav-background">
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav collapse" id="navbar">
       <li>
         <router-link :to="{name: 'home'}">EACM K9</router-link>
       </li>
@@ -25,6 +25,7 @@
         </ul>
       </li>
     </ul>
+    <div class="navbar-arrow collapsed" data-toggle="collapse" data-target="#navbar"></div>
   </nav>
 
   <router-view></router-view>

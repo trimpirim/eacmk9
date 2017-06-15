@@ -87,7 +87,7 @@
 	_vue2.default.use(_vueRouter2.default);
 	_vue2.default.use(_vueResource2.default);
 
-	var routes = [{ path: '/our-dogs', name: 'our-dogs', component: _ourDogsComponent2.default }, { path: '/home', name: 'home', component: _homeComponent2.default }, { path: '/puppy/:id', name: 'puppy', component: _puppyComponent2.default }, { path: '/our-dog/:dog', name: 'our-dog', component: _ourDogComponent2.default }, { path: '/services', name: 'services', component: _servicesComponent2.default }];
+	var routes = [{ path: '/our-dogs', name: 'our-dogs', component: _ourDogsComponent2.default }, { path: '/', name: 'index', component: _homeComponent2.default }, { path: '/home', name: 'home', component: _homeComponent2.default }, { path: '/puppy/:id', name: 'puppy', component: _puppyComponent2.default }, { path: '/our-dog/:dog', name: 'our-dog', component: _ourDogComponent2.default }, { path: '/services', name: 'services', component: _servicesComponent2.default }];
 
 	var router = new _vueRouter2.default({
 	  routes: routes,
@@ -7262,6 +7262,7 @@
 	//
 	//
 	//
+	//
 
 	exports.default = {
 	  data: function data() {
@@ -7300,7 +7301,10 @@
 	  }, [_c('nav', {
 	    staticClass: "navbar nav-inverse nav-background"
 	  }, [_c('ul', {
-	    staticClass: "nav navbar-nav"
+	    staticClass: "nav navbar-nav collapse",
+	    attrs: {
+	      "id": "navbar"
+	    }
 	  }, [_c('li', [_c('router-link', {
 	    attrs: {
 	      "to": {
@@ -7332,7 +7336,13 @@
 	        }
 	      }
 	    }, [_vm._v("\n              " + _vm._s(litter.name) + "\n            ")])], 1)
-	  }))])])]), _vm._v(" "), _c('router-view'), _vm._v(" "), _vm._m(1)], 1)
+	  }))])]), _vm._v(" "), _c('div', {
+	    staticClass: "navbar-arrow collapsed",
+	    attrs: {
+	      "data-toggle": "collapse",
+	      "data-target": "#navbar"
+	    }
+	  })]), _vm._v(" "), _c('router-view'), _vm._v(" "), _vm._m(1)], 1)
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('a', {
 	    staticClass: "dropdown-toggle",
@@ -11441,6 +11451,16 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	var SearchableObject = function () {
 	  function SearchableObject(title) {
@@ -12144,20 +12164,25 @@
 	    staticClass: "row"
 	  }, [_c('div', {
 	    staticClass: "col-xs-12"
+	  }, [_vm._m(1), _vm._v(" "), _c('div', {
+	    staticClass: "collapse filter-content",
+	    attrs: {
+	      "id": "filter"
+	    }
 	  }, [_c('div', {
-	    staticClass: "row"
+	    staticClass: "row filter-content-list"
 	  }, _vm._l((_vm.searchableObjects), function(searchableObject, key) {
 	    return (searchableObject.items.length > 0) ? _c('div', {
 	      staticClass: "col-xs-12 col-sm-3"
 	    }, [_c('div', {
 	      staticClass: "dropdown-search"
 	    }, [_c('button', {
-	      staticClass: "btn btn-primary dropdown-toggle",
+	      staticClass: "btn btn-primary btn-rounded-transparent dropdown-toggle",
 	      attrs: {
 	        "type": "button",
 	        "data-toggle": "dropdown"
 	      }
-	    }, [_vm._v("\n                      " + _vm._s(searchableObject.selectedTitleOrDefaultTitle()) + "\n                      "), _c('span', {
+	    }, [_vm._v("\n                        " + _vm._s(searchableObject.selectedTitleOrDefaultTitle()) + "\n                        "), _c('span', {
 	      staticClass: "caret"
 	    })]), _vm._v(" "), _c('ul', {
 	      staticClass: "dropdown-menu"
@@ -12170,7 +12195,7 @@
 	          _vm.changeFilter(key, null)
 	        }
 	      }
-	    }, [_vm._v("\n                          " + _vm._s(searchableObject.title) + "\n                        ")])]), _vm._v(" "), _vm._l((searchableObject.items), function(item) {
+	    }, [_vm._v("\n                            " + _vm._s(searchableObject.title) + "\n                          ")])]), _vm._v(" "), _vm._l((searchableObject.items), function(item) {
 	      return _c('li', [_c('a', {
 	        attrs: {
 	          "href": "javascript:void(0);"
@@ -12180,9 +12205,9 @@
 	            _vm.changeFilter(key, item.value)
 	          }
 	        }
-	      }, [_vm._v("\n                          " + _vm._s(item.title) + "\n                        ")])])
+	      }, [_vm._v("\n                            " + _vm._s(item.title) + "\n                          ")])])
 	    })], 2)])]) : _vm._e()
-	  }))])]), _vm._v(" "), _c('div', {
+	  }))])])]), _vm._v(" "), _c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
 	    staticClass: "col-xs-12"
@@ -12208,6 +12233,19 @@
 	  }, [_c('h1', {
 	    staticClass: "info-header"
 	  }, [_vm._v("Our dogs")])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "row"
+	  }, [_c('div', {
+	    staticClass: "col-xs-12 visible-xs visible-sm"
+	  }, [_c('button', {
+	    staticClass: "btn btn-primary btn-rounded-transparent u-full-width",
+	    attrs: {
+	      "type": "button",
+	      "data-toggle": "collapse",
+	      "data-target": "#filter"
+	    }
+	  }, [_vm._v("\n                    Toggle filter\n                    ")])])])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -12435,7 +12473,7 @@
 	    staticClass: "row"
 	  }, _vm._l((_vm.dog.images), function(image) {
 	    return _c('div', {
-	      staticClass: "col-xs-3"
+	      staticClass: "col-xs-6 col-sm-3"
 	    }, [_c('img', {
 	      staticClass: "img-responsive img-pup",
 	      attrs: {
@@ -12600,7 +12638,7 @@
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [(_vm.content.training) ? _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('h2', {
 	    staticClass: "info-header",
 	    domProps: {
@@ -12612,7 +12650,7 @@
 	      "innerHTML": _vm._s(_vm.content.training.content)
 	    }
 	  })]) : _vm._e(), _vm._v(" "), (_vm.content.breeding) ? _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('h2', {
 	    staticClass: "info-header",
 	    domProps: {
@@ -12981,7 +13019,7 @@
 	  }, [_c('div', {
 	    staticClass: "row info-row-separator"
 	  }, [_c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('h1', {
 	    staticClass: "info-header"
 	  }, [_vm._v("\n              " + _vm._s(_vm.puppy.name) + " (" + _vm._s(_vm.litter.name) + ")\n            ")]), _vm._v(" "), _c('div', {
@@ -13013,7 +13051,7 @@
 	      "innerHTML": _vm._s(_vm.puppy.evaluation)
 	    }
 	  })])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('div', {
 	    staticClass: "info-content info-content-without-header"
 	  }, [(_vm.puppy.images.length > 0) ? _c('div', [_c('img', {
@@ -13041,7 +13079,7 @@
 	      }
 	    })])
 	  }))]) : _vm._e()])])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('div', {
 	    staticClass: "row info-row-separator"
 	  }, [_c('div', {
@@ -13061,7 +13099,7 @@
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('div', {
 	    staticClass: "dog-block"
 	  }, [_c('strong', {
@@ -13074,7 +13112,7 @@
 	      "src": '/images/display?image=' + _vm.sire.images[0].content
 	    }
 	  }) : _vm._e()])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('div', {
 	    staticClass: "dog-block"
 	  }, [_c('strong', {
@@ -13161,7 +13199,7 @@
 	  }, [_c('div', {
 	    staticClass: "label"
 	  }, [_vm._v("\n                                  " + _vm._s(_vm.dam.dam.dam.name) + "\n                                ")])]) : _vm._e()]) : _vm._e()]) : _vm._e()]) : _vm._e()])])])])])])])])]), _vm._v(" "), _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [_c('div', {
@@ -13174,7 +13212,7 @@
 	    staticClass: "row"
 	  }, [_vm._l((_vm.puppies), function(puppy) {
 	    return _c('div', {
-	      staticClass: "col-xs-3"
+	      staticClass: "col-xs-12 col-sm-3"
 	    }, [_c('div', {
 	      staticClass: "dog-block"
 	    }, [_c('router-link', {
@@ -13323,7 +13361,7 @@
 	  }, [_c('div', {
 	    staticClass: "row"
 	  }, [(_vm.content.detection) ? _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('h2', {
 	    staticClass: "info-header",
 	    domProps: {
@@ -13335,7 +13373,7 @@
 	      "innerHTML": _vm._s(_vm.content.detection.content)
 	    }
 	  })]) : _vm._e(), _vm._v(" "), (_vm.content.security) ? _c('div', {
-	    staticClass: "col-xs-6"
+	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('h2', {
 	    staticClass: "info-header",
 	    domProps: {

@@ -10,11 +10,11 @@
     </div>
     <div class="container-fluid cont-second">
       <div class="row">
-        <div class="col-xs-6" v-if="content.detection">
+        <div class="col-xs-12 col-sm-6" v-if="content.detection">
           <h2 v-html="content.detection.title" class="info-header"></h2>
           <p class="info-text" v-html="content.detection.content"></p>
         </div>
-        <div class="col-xs-6" v-if="content.security">
+        <div class="col-xs-12 col-sm-6" v-if="content.security">
           <h2 v-html="content.security.title" class="info-header"></h2>
           <p class="info-text" v-html="content.security.content"></p>
         </div>

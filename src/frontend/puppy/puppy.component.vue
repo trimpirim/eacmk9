@@ -5,7 +5,7 @@
         <div class="col-xs-12">
           <div class="row info-row-separator">
             <!-- PUPPY INFO --> 
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-sm-6">
               <h1 class="info-header">
                 {{ puppy.name }} ({{ litter.name }})
               </h1>
@@ -52,7 +52,7 @@
             <!-- PUPPY INFO END --> 
 
             <!-- PUPPY IMAGES --> 
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-sm-6">
               <div class="info-content info-content-without-header">
                 <div v-if="puppy.images.length > 0">
                   <img :src="'/images/display?image=' + puppy.images[0].content" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
@@ -69,7 +69,7 @@
         </div>
 
         <!-- LINEAGE --> 
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-sm-6">
           <div class="row info-row-separator">
             <div class="col-xs-12">
               <div class="row d-flex f-wrap">
@@ -81,13 +81,13 @@
                       </h2>
                       <div class="info-content">
                         <div class="row">
-                          <div class="col-xs-6">
+                          <div class="col-xs-12 col-sm-6">
                             <div class="dog-block">
                               <strong v-html="sire.name"></strong>
                               <img class="img-responsive center-block" :src="'/images/display?image=' + sire.images[0].content" v-if="sire.images.length > 0">
                             </div>
                           </div>
-                          <div class="col-xs-6">
+                          <div class="col-xs-12 col-sm-6">
                             <div class="dog-block">
                               <strong v-html="dam.name"></strong>
                               <img class="img-responsive center-block" :src="'/images/display?image=' + dam.images[0].content" v-if="dam.images.length > 0">
@@ -193,7 +193,7 @@
           <!-- LINEAGE END --> 
 
         <!-- PUPPIES LIST OF LITTER -->
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-sm-6">
           <div class="row">
             <div class="col-xs-12">
               <h2 class="info-header">
@@ -201,7 +201,7 @@
               </h2>
               <div class="info-content">
                 <div class="row">
-                  <div class="col-xs-3" v-for="puppy in puppies">
+                  <div class="col-xs-12 col-sm-3" v-for="puppy in puppies">
                     <div class="dog-block">
                       <router-link :to="{name: 'puppy', params: {id: puppy._id}}">
                         <strong>{{ puppy.name }}</strong>

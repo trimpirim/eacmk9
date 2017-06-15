@@ -43,7 +43,7 @@
           <div class="info-content info-content-without-header">
             <img class="img-responsive center-block" :src="'/images/display?image=' + dog.images[0].content" width="500" height="auto" style="height: 300px; display: block; margin: 0 auto; padding: 10px;"/>
             <div class="row">
-              <div class="col-xs-3" v-for="image in dog.images">
+              <div class="col-xs-6 col-sm-3" v-for="image in dog.images">
                 <img class="img-responsive img-pup" :src="'/images/display?image=' + image.content">
               </div>
             </div>
