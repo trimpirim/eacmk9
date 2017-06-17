@@ -1,51 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
 html {
   height: 100%;
 }
 
-.body-intro {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-}
-
-.body-intro .row {
-  height: 100vh;
-}
-
-.row-logo{
-  height: 100%;
-  background-image: url("../img/O9FG5M0.jpg");
-}
-
-.front-logo {
-  display: block;
-  width: 600px;
-  height: auto;
-  margin: 0 auto;
-  padding-top: 50px;
-}
-
-.col-transparent {
-  background-color: rgba(44, 62, 80, 0.5);
-  height: 100vh;
-}
-
-
-
-
 /* INDEX 6 HTML OPEN */
 .body-example-sixth {
   background-color: black;
-  background-image: url("../images/OC1Y8E0.jpg");
+  background-image: url("../images/background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-}
-
-.about-mission {
-  font-family: 'Kanit', sans-serif;
-  padding-bottom: 5px;
+  font-family: 'Lato', sans-serif;
+  color: #FFF;
+  -webkit-font-smoothing: antialiased;
 }
 
 h3,
@@ -63,11 +33,6 @@ h1 {
   width: 100%;
 }
 
-.about-text {
-  text-align: center;
-  padding: 20px;
- }
-
 .info-header {
   border-bottom: 1px solid #fff;
 }
@@ -84,14 +49,6 @@ h1 {
 
 /* SOCIAL ICONS */
 
-@import url(http://fonts.googleapis.com/css?family=Lato);
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
-
-body.body-example-sixth {
-  font-family: 'Lato', sans-serif;
-  color: #FFF;
-  -webkit-font-smoothing: antialiased;
-}
 body.body-example-sixth a {
   text-decoration: none;
   color: #fff;
@@ -107,12 +64,6 @@ body.body-example-sixth h4,
 body.body-example-sixth h5,
 body.body-example-sixth h6 {
   margin: 5px 0 5px 0;
-}
-._12 {
-  font-size: 1.2em;
-}
-._14 {
-  font-size: 1.4em;
 }
 body.body-example-sixth ul {
   padding:0;
@@ -212,8 +163,6 @@ body.body-example-sixth .fa-google-plus:hover {
 
 /* SOCIAL ICONS END */
 
-
-
 /* INDEX 6 INSIDE*/
 
 /* NAVBAR */
@@ -263,61 +212,12 @@ body.body-example-sixth .fa-google-plus:hover {
 
 /* NAVBR */
 
-.thumbnail {
-  display: block;
-  width: 500px;
-  height: auto;
-  background-color: transparent;
-  border: 0;
-  padding-bottom: 25px;
-  margin: 0 auto;
-}
-
-.describe {
-  display: block;
-  padding: 10px;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-  font-family: 'Kanit', sans-serif;
-  text-align: left;
-  width: auto;
-}
-
-.name {
-  font-size: 20px;
-  text-align: center;
- border-bottom: 1px solid #fff;
-
-}
-
-.describe-paragraph {
-  padding-left: 10px;
-  margin-top: 20px;
-}
-
-.col-describe {
-  padding: 10px;
-  background-color: rgba(52, 73, 94, 0.5);
-}
-
-
 .footer {
   width: 100%;
   text-align: center;
   padding: 0;
   margin: 0;
   padding-top: 50px;
-}
-
-.button {
-  width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.button img {
-  display: block;
-  margin: 0 auto;
 }
 
 /* INDEX 6 INSIDE END*/
@@ -327,51 +227,26 @@ body.body-example-sixth .fa-google-plus:hover {
 
 .dog-list {
   text-align: center;
-  // padding-top: 50px;
   font-size: 20px;
   font-family: 'Kanit', sans-serif;
-  // width: 90%;
   margin-top: 30px;
 }
 
 ul.dog-name {
-border: 2px solid transparent;
+  border: 2px solid transparent;
 }
 
 ul.dog-name li {
-text-align: center;
-padding: 10px;
+  text-align: center;
+  padding: 10px;
 }
 
 ul.dog-name:hover {
-border: 2px solid rgba(52, 73, 94, 0.5);
-}
-
-h3.kratos {
-  display: block;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
-  background-color: none;
-
+  border: 2px solid rgba(52, 73, 94, 0.5);
 }
 /*INDEX 6 DOGLIST END */
 
 /*INDEX 6 - UPCOMMING LITTERS */
-
-.modal-body {
-  text-align: center;
-  background-color: rgba(52, 73, 94, 0.2);
-}
-
-.row {
-  // padding-top: 5px;
-}
-
-.row-pups {
-  margin-bottom: 60px;
-}
-
-
 .img-pup {
   height: 100px;
   width: auto;
@@ -380,145 +255,17 @@ h3.kratos {
   margin-bottom: 5px;
   padding-top: 5px;
 }
-
-#largeImgPanel {
-  visibility: hidden;
-  position: fixed;
-  z-index: 100;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(44, 62, 80, 0.5);
-  margin: 0 auto;
-}
-
-#largeImgPanel img {
-  position: absolute;
-  top: 50%;
-  display: block;
-  width: 50%;
-  height: auto;
-  margin: 0 auto;
-  transform: translateY(-50%) translateX(50%);
-}
-
-
 /*INDEX 6 - UPCOMMING LITTERS END */
-
-/* IMAGE SLIDER */
-
-.image-slider-wrapper{
-    overflow: hidden;
-}
-
-.slider-item {
-  outline: none;
-}
-
-.slider-item:hover {
-  cursor: -webkit-grab;
-}
-
-.slider-item:hover,
-.slider-item:focus,
-.slider-item:active {
-  outline: none;
-}
-
-.slick-slide {
-  height: auto;
-}
-
-.slider-item img {
-  margin: 0 auto;
-}
-
-/* IMAGE SLIDER END */
-
-
-/* SERVICES */
-
-.cont-services {
-  text-align: center;
-
-}
-
-.p-services-detection {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: rgba(44, 62, 80, 0.5);
-}
-
-
- 
-/* SERVICES END */
-
-.col-description {
-  background-color: rgba(52, 73, 94, 0,2);
-}
-
-.main-img {
-  width: 400px;
-  display: block;
-  margin: 0 auto;
-}
-
-.lineage {
-  display: block;
-  margin: 0 auto;
-}
 
 .dog-name {
   padding-top: 20px;
 }
 
-.row-dog-photos {
-  margin-bottom: 50px;
-}
-
-
-.planned-breedings {
-  padding: 10px;
-  background-color: rgba(52, 73, 94, 0.5);
-  height: auto;
-}
-
-.li-titles {
-  padding: 20px;
-  font-size: 15px;
-}
-
-.titles-certifications {
-  padding-left: 20px;
-}
-
-.row-search {
-  text-align: center;
-  font-size: 15px;
-  padding: 10px;
-  // padding-top: 30px;
-  background-color: rgba(41, 128, 185, 0.2);
-}
-
-.search-icon {
-  margin-top: 10px;
-  padding-bottom: 15px;
-  cursor: pointer;
-}
 
 h3 {
   text-align: center;
   display: block;
   margin: 0 auto;
-  // padding: 10px;
-  // padding-right: 210px;
-}
-
-.our-dogs-h {
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .dropdown-search {
@@ -567,71 +314,6 @@ h3 {
   font-size: 15px;
   font-weight: bolder;
   text-shadow: 1px 1px black;
-}
-
-.lineage-h {
-  text-align: center;
-  padding-left: 10px;
-  font-size: 20px;
-}
-
-.col-mom {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.col-dad {
-  text-align: center;
-  margin-top: 20px;
-
-}
-
-.col-xs-1 {
-  padding: 5px;
-  margin: 0;
-  margin-top: 20px;
-  text-align: left;
-}
-
-.img-lineage-mother,
-.img-lineage-father {
-  width: 200px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.gran-sire-dam {
-  background-color: rgba(52, 152, 219, 0.5);
-  border-radius: 30px;
-  text-align: center;
-  padding: 5px;
-}
-
-.great-gran-sire {
-  background-color: rgba(22, 160, 133, 0.5);
-  padding: 5px;
-  border-radius: 30px;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.great-gran-dam {
-  background-color: rgba(22, 160, 133, 0.5);
-  border-radius: 30px;
-  padding: 5px;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.col-great-dam {
-  border-left: 1px solid #fff;
-  
-  padding: 5px;
-}
-
-.col-great-sire {
-
-  padding: 5px;
 }
 
 /*
@@ -927,6 +609,67 @@ h3 {
   border: 1px solid #fff;
   border-radius: 20px;
   background-color: transparent;
+  box-shadow: none;
+}
+
+.intro-component {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.intro-component.intro-component-seen {
+  z-index: -1;
+}
+
+.intro-component .intro-component-content {
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  position: absolute;
+  width: 90%;
+  text-align: justify;
+  font-size: 16px;
+}
+
+.intro-component .btn {
+  transition: color .2s ease, border-color .2s ease;
+  border-color: #fff;
+  color: #fff;
+  text-transform: uppercase;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+
+.intro-component .btn:hover {
+  border-color: #8a8787;
+  color: #8a8787;
+}
+
+.intro-component .col-with-background {
+  height: 100vh;
+}
+
+.intro-component .col-with-background {
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1
+}
+
+.intro-component.intro-component-seen .col-with-background {
+  transform: scale(0.25);
+  opacity: 0;
+  transition: transform .5s ease-in-out, opacity .2s ease;
+}
+
+.intro-component img {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -984,5 +727,9 @@ h3 {
 
   .filter-content.in .filter-content-list {
     opacity: 1;
+  }
+
+  .intro-component img {
+    width: 100%;
   }
 }

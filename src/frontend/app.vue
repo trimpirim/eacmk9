@@ -28,6 +28,8 @@
     <div class="navbar-arrow collapsed" data-toggle="collapse" data-target="#navbar"></div>
   </nav>
 
+  <intro></intro>
+
   <router-view></router-view>
 
   <div id="largeImgPanel" onclick="hideMe(this);">
@@ -37,6 +39,8 @@
 </template>
 
 <script>
+import Intro from './intro/intro.component.vue'
+
 export default {
   data() {
     return {
@@ -61,6 +65,9 @@ export default {
     }, error => {
 
     })
+  },
+  components: {
+    'intro': Intro
   }
 }
 </script>
