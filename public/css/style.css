@@ -267,6 +267,7 @@ ul.dog-name:hover {
   margin-top: 5%;
   overflow: hidden;
   position: relative;
+  display: block;
 }
 
 .puppy-image-box img {
