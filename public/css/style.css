@@ -262,13 +262,20 @@ ul.dog-name:hover {
   overflow: hidden;
 }
 
+.puppy-image-box > a {
+  height: 90%;
+  margin-top: 5%;
+  overflow: hidden;
+  position: relative;
+}
+
 .puppy-image-box img {
   position: absolute;
   display: block;
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
   left: 50%;
-  width: 90%;
+  width: 100%;
 }
 
 /*INDEX 6 - UPCOMMING LITTERS END */
