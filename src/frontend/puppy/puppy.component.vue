@@ -55,10 +55,11 @@
             <div class="col-xs-12 col-sm-6">
               <div class="info-content info-content-without-header">
                 <div v-if="puppy.images.length > 0">
-                  <img :src="'/images/display?image=' + puppy.images[0].content" style="height: 300px; display: block; margin: 0 auto; padding: 10px;">
                   <div class="row">
-                    <div class="col-xs-3" v-for="image in puppy.images">
-                      <img class="img-pup" :src="'/images/display?image=' + image.content" style="cursor: pointer;"/>
+                    <div class="col-xs-6 col-sm-4 puppy-image-box" v-for="image in puppy.images">
+                      <a :href="'/images/display?image=' + image.content" data-lightbox="dog-image">
+                        <img class="img-responsive" :src="'/images/display?image=' + image.content" style="cursor: pointer;"/>
+                      </a>
                     </div>
                   </div>
                 </div>

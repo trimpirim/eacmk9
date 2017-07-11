@@ -30,3 +30,7 @@ new Vue({
   router,
   render: createEl => createEl(app)
 }).$mount('#app')
+
+lightbox.option({
+  'showImageNumberLabel': false
+})

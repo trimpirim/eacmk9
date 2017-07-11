@@ -101,6 +101,10 @@
 	  }
 	}).$mount('#app');
 
+	lightbox.option({
+	  'showImageNumberLabel': false
+	});
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -7433,7 +7437,7 @@
 	  }, [_c('img', {
 	    staticClass: "img-responsive",
 	    attrs: {
-	      "src": "images/logo.png"
+	      "src": "/images/logo.png"
 	    }
 	  }), _vm._v(" "), _c('button', {
 	    staticClass: "btn btn-primary btn-rounded-transparent u-full-width",
@@ -12522,6 +12526,7 @@
 	//
 	//
 	//
+	//
 
 	var OurDog = {
 	  data: function data() {
@@ -12611,30 +12616,22 @@
 	    staticClass: "col-xs-12 col-sm-6 info-row-separator"
 	  }, [_c('div', {
 	    staticClass: "info-content info-content-without-header"
-	  }, [_c('img', {
-	    staticClass: "img-responsive center-block",
-	    staticStyle: {
-	      "height": "300px",
-	      "display": "block",
-	      "margin": "0 auto",
-	      "padding": "10px"
-	    },
-	    attrs: {
-	      "src": '/images/display?image=' + _vm.dog.images[0].content,
-	      "width": "500",
-	      "height": "auto"
-	    }
-	  }), _vm._v(" "), _c('div', {
+	  }, [_c('div', {
 	    staticClass: "row"
 	  }, _vm._l((_vm.dog.images), function(image) {
 	    return _c('div', {
-	      staticClass: "col-xs-6 col-sm-3"
+	      staticClass: "col-xs-6 col-sm-4 puppy-image-box"
+	    }, [_c('a', {
+	      attrs: {
+	        "href": '/images/display?image=' + image.content,
+	        "data-lightbox": "dog-image"
+	      }
 	    }, [_c('img', {
-	      staticClass: "img-responsive img-pup",
+	      staticClass: "img-responsive",
 	      attrs: {
 	        "src": '/images/display?image=' + image.content
 	      }
-	    })])
+	    })])])
 	  }))])]) : _vm._e(), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-12 col-sm-6 info-row-separator"
 	  }, [_c('h2', {
@@ -13092,6 +13089,7 @@
 	//
 	//
 	//
+	//
 
 	var Puppy = {
 	  data: function data() {
@@ -13209,30 +13207,25 @@
 	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('div', {
 	    staticClass: "info-content info-content-without-header"
-	  }, [(_vm.puppy.images.length > 0) ? _c('div', [_c('img', {
-	    staticStyle: {
-	      "height": "300px",
-	      "display": "block",
-	      "margin": "0 auto",
-	      "padding": "10px"
-	    },
-	    attrs: {
-	      "src": '/images/display?image=' + _vm.puppy.images[0].content
-	    }
-	  }), _vm._v(" "), _c('div', {
+	  }, [(_vm.puppy.images.length > 0) ? _c('div', [_c('div', {
 	    staticClass: "row"
 	  }, _vm._l((_vm.puppy.images), function(image) {
 	    return _c('div', {
-	      staticClass: "col-xs-3"
+	      staticClass: "col-xs-6 col-sm-4 puppy-image-box"
+	    }, [_c('a', {
+	      attrs: {
+	        "href": '/images/display?image=' + image.content,
+	        "data-lightbox": "dog-image"
+	      }
 	    }, [_c('img', {
-	      staticClass: "img-pup",
+	      staticClass: "img-responsive",
 	      staticStyle: {
 	        "cursor": "pointer"
 	      },
 	      attrs: {
 	        "src": '/images/display?image=' + image.content
 	      }
-	    })])
+	    })])])
 	  }))]) : _vm._e()])])])]), _vm._v(" "), _c('div', {
 	    staticClass: "col-xs-12 col-sm-6"
 	  }, [_c('div', {

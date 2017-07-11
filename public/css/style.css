@@ -247,14 +247,30 @@ ul.dog-name:hover {
 /*INDEX 6 DOGLIST END */
 
 /*INDEX 6 - UPCOMMING LITTERS */
-.img-pup {
-  height: 100px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 5px;
-  padding-top: 5px;
+// .img-pup {
+//   height: 100px;
+//   width: auto;
+//   display: block;
+//   margin: 0 auto;
+//   margin-bottom: 5px;
+//   padding-top: 5px;
+// }
+
+.puppy-image-box {
+  position: relative;
+  height: 120px;
+  overflow: hidden;
 }
+
+.puppy-image-box img {
+  position: absolute;
+  display: block;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  left: 50%;
+  width: 90%;
+}
+
 /*INDEX 6 - UPCOMMING LITTERS END */
 
 .dog-name {

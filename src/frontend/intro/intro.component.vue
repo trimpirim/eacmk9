@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-xs-12 col-with-background">
         <div class="intro-component-content">
-          <img class="img-responsive" src="images/logo.png" />
+          <img class="img-responsive" src="/images/logo.png" />
           <button type="button" class="btn btn-primary btn-rounded-transparent u-full-width" v-on:click="hideIntro">
             Dive in
           </button>
