@@ -2,49 +2,54 @@ extends layout.pug
 include ../../form-helpers/select.pug
 
 block heading
-  h1 #{__('admin.dogs.heading')}
+    h1 #{__('admin.dogs.heading')}
 
 block actions
-  .row
-    .col-xs-12
-      .form-group
-        a.btn.btn-primary(href='/admin/dog/create') #{__('admin.dogs.add')}
+    .row
+        .col-xs-12
+            .form-group
+                a.btn.btn-primary(href='/admin/dog/create') #{__('admin.dogs.add')}
 
 block filter
-  form(action=`/admin/dog/list`, method='GET', id='filter-form')
-    .row
-      .col-xs-2
-        .form-group
-          label.control-label #{__('admin.dogs.filter.name')}
-          input.form-control(type='text', name='name', value=((form.name) ? form.name : ''))
-      .col-xs-2
-        .form-group
-          +select(`${__('admin.dogs.filter.puppy')}`, 'puppy', puppyOptions, {value: 'all', title: __('admin.dogs.filter.puppy.select')})
-      .col-xs-2
-        .form-group
-          +select(`${__('admin.dogs.filter.litter')}`, 'litter', litters.map(function(object) { return {value: object._id, title: object.name, selected: object.id == form.litter}}), {value: '', title: __('admin.dogs.filter.litter.select')})
-      .col-xs-12
-        .form-group
-          button.btn.btn-primary.s-1x-margin-right(type='submit') #{__('admin.dogs.filter.do')}
-          button.btn.btn-primary.js-reset-element(type='reset', value='reset', name='reset', form='filter-form') #{__('admin.dogs.filter.reset')}
+    form(action=`/admin/dog/list`, method='GET', id='filter-form')
+        .row
+            .col-xs-2
+                .form-group
+                    label.control-label #{__('admin.dogs.filter.name')}
+                    input.form-control(type='text', name='name', value=((form.name) ? form.name : ''))
+            .col-xs-2
+                .form-group
+                    +select(`${__('admin.dogs.filter.puppy')}`, 'puppy', puppyOptions, {
+                        value: 'all',
+                        title: __('admin.dogs.filter.puppy.select')
+                    })
+            .col-xs-2
+                .form-group
+                    +select(`${__('admin.dogs.filter.litter')}`, 'litter', litters.map(function (object) {
+                        return {value: object._id, title: object.name, selected: object.id == form.litter}
+                    }), {value: '', title: __('admin.dogs.filter.litter.select')})
+            .col-xs-12
+                .form-group
+                    button.btn.btn-primary.s-1x-margin-right(type='submit') #{__('admin.dogs.filter.do')}
+                    button.btn.btn-primary.js-reset-element(type='reset', value='reset', name='reset', form='filter-form') #{__('admin.dogs.filter.reset')}
 
 block content
-  .row 
-    .col-xs-12
-      .list
-        each dog, i in dogs
-          .row
-            .col-xs-12.list-item(class=i % 2 == 0 ? 'odd' : 'even')
-              .row
-                .col-xs-3= dog._id
-                .col-xs-6= dog.name
-                .col-xs-1= dog.images.length
-                .col-xs-1
-                  a(href=`/admin/dog/edit/${dog._id}`)
-                    i.glyphicon.glyphicon-edit
-                .col-xs-1
-                  a(href=`/admin/dog/delete/${dog._id}`)
-                    i.glyphicon.glyphicon-trash
-        else
-          .row
-            .col-xs-12.list-item #{__('admin.dogs.no_dogs')}
+    .row
+        .col-xs-12
+            .list
+                each dog, i in dogs
+                    .row
+                        .col-xs-12.list-item(class=i % 2 == 0 ? 'odd' : 'even')
+                            .row
+                                .col-xs-3= dog._id
+                                .col-xs-6= dog.name
+                                .col-xs-1= dog.images.length
+                                .col-xs-1
+                                    a(href=`/admin/dog/edit/${dog._id}`)
+                                        i.glyphicon.glyphicon-edit
+                                .col-xs-1
+                                    a(href=`/admin/dog/delete/${dog._id}`)
+                                        i.glyphicon.glyphicon-trash
+                else
+                    .row
+                        .col-xs-12.list-item #{__('admin.dogs.no_dogs')}

@@ -3,3 +3,4 @@ src/backend/config.js
 .DS_Store
 !*.gitkeep
 gulps/config.js
+/.idea

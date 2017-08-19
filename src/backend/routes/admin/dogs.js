@@ -42,21 +42,26 @@ const routes = (loggedMiddleware) => {
         selected: req.query.puppy == form.filter.CONSTANTS.ADULTS
       }]
 
-      Dog.find(form.filter.parseRequest(req.form)).sort([['createdAt', 'descending']]).exec((err, dogs) => {
-        if (err) throw err
-        Litter.find({}).sort([['createdAt', 'descending']]).exec((err, litters) => {
-          if (err) throw err
-          res.status(200);
-          res.render('admin/dog/list', {dogs: dogs, litters: litters, puppyOptions: puppyOptions, form: req.form});
-        })
-      });
+        Dog.find(form.filter.parseRequest(req.form)).sort([['createdAt', 'descending']]).exec((err, dogs) => {
+            if (err) throw err
+            Litter.find({}).sort([['createdAt', 'descending']]).exec((err, litters) => {
+                if (err) throw err
+                res.status(200);
+                res.render('admin/dog/list', {
+                    dogs: dogs,
+                    litters: litters,
+                    puppyOptions: puppyOptions,
+                    form: req.form
+                });
+            })
+        });
     });
 
   router.route('/create')
     .all(loggedMiddleware, (req, res, next) => {
       const dog = new Dog()
       res.locals.dogObject = dog
-      allDogsAndLitters(res, next)      
+      allDogsAndLitters(res, next)
     })
     .get(loggedMiddleware, (req, res) => {
       res.status(200);
