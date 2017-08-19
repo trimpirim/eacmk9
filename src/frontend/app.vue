@@ -12,7 +12,7 @@
                     <router-link to="/services">SERVICES</router-link>
                 </li>
                 <li>
-                    <router-link :to="{name: 'our-dogs'}">OUR DOGS</router-link>
+                    <router-link :to="{name: 'our-dogs'}">SEARCH</router-link>
                 </li>
 
                 <li class="dropdown">

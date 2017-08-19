@@ -28,7 +28,7 @@
                 <div class="col-sm-4 col-xs-12" v-if="content.breeding">
                     <h2 v-html="content.breeding.title" class="info-header"></h2>
                     <div class="info-text">
-                        <p v-html="content.breeding.content" class="s-3x-margin-bottom"></p>
+                        <p v-html="content.breeding.shortContent" class="s-3x-margin-bottom short-content"></p>
                         <img src="/images/home-image.jpg" class="img-responsive center-block s-2x-margin-bottom"/>
                         <router-link :to="{name: 'about'}" class="btn btn-primary btn-rounded-transparent u-full-width">
                             Read more
@@ -38,7 +38,7 @@
                 <div class="col-sm-4 col-xs-12" v-if="content.training">
                     <h2 v-html="content.training.title" class="info-header"></h2>
                     <div class="info-text">
-                        <p v-html="content.training.content" class="s-3x-margin-bottom"></p>
+                        <p v-html="content.training.shortContent" class="s-3x-margin-bottom short-content"></p>
                         <img src="/images/home-image.jpg" class="img-responsive center-block s-2x-margin-bottom"/>
                         <router-link :to="{name: 'about'}" class="btn btn-primary btn-rounded-transparent u-full-width">
                             Read more
@@ -48,7 +48,7 @@
                 <div class="col-sm-4 col-xs-12" v-if="content.services">
                     <h2 v-html="content.services.title" class="info-header"></h2>
                     <div class="info-text">
-                        <p v-html="content.services.content" class="s-3x-margin-bottom"></p>
+                        <p v-html="content.services.shortContent" class="s-3x-margin-bottom short-content"></p>
                         <img src="/images/home-image.jpg" class="img-responsive center-block s-2x-margin-bottom"/>
                         <router-link :to="{name: 'services'}"
                                      class="btn btn-primary btn-rounded-transparent u-full-width">
@@ -81,9 +81,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-6 col-xs-12 s-1x-margin-top">
-                                <p>
-                                    Our dogs information
-                                </p>
+                                <p v-if="content['our-dogs-information']"
+                                   v-html="content['our-dogs-information'].content"></p>
                                 <router-link :to="{name: 'our-dogs'}"
                                              class="btn btn-primary btn-rounded-transparent btn-padded">
                                     More dogs
@@ -106,7 +105,8 @@
                 content: {
                     training: null,
                     breeding: null,
-                    services: null
+                    services: null,
+                    'our-dogs-information': null
                 },
                 slickOptions: {
                     slidesToShow: 1,

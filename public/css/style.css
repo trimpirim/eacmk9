@@ -726,6 +726,11 @@ h6.no-background {
     font-weight: 900;
 }
 
+.home-component .short-content {
+    max-height: 200px;
+    overflow: hidden;
+}
+
 .intro-component img {
     max-width: 500px;
     margin: 0 auto;

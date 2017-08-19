@@ -91,7 +91,7 @@
 	_vue2.default.use(_vueRouter2.default);
 	_vue2.default.use(_vueResource2.default);
 
-	var routes = [{ path: '/our-dogs', name: 'our-dogs', component: _ourDogsComponent2.default }, { path: '/', name: 'index', component: _homeComponent2.default }, { path: '/home', name: 'home', component: _homeComponent2.default }, { path: '/about', name: 'about', component: _aboutComponent2.default }, { path: '/puppy/:id', name: 'puppy', component: _puppyComponent2.default }, { path: '/our-dog/:dog', name: 'our-dog', component: _ourDogComponent2.default }, { path: '/services', name: 'services', component: _servicesComponent2.default }];
+	var routes = [{ path: '/search', name: 'our-dogs', component: _ourDogsComponent2.default }, { path: '/', name: 'index', component: _homeComponent2.default }, { path: '/home', name: 'home', component: _homeComponent2.default }, { path: '/about', name: 'about', component: _aboutComponent2.default }, { path: '/puppy/:id', name: 'puppy', component: _puppyComponent2.default }, { path: '/our-dog/:dog', name: 'our-dog', component: _ourDogComponent2.default }, { path: '/services', name: 'services', component: _servicesComponent2.default }];
 
 	var router = new _vueRouter2.default({
 	    routes: routes,
@@ -7500,7 +7500,7 @@
 	        name: 'our-dogs'
 	      }
 	    }
-	  }, [_vm._v("OUR DOGS")])], 1), _vm._v(" "), _c('li', {
+	  }, [_vm._v("SEARCH")])], 1), _vm._v(" "), _c('li', {
 	    staticClass: "dropdown"
 	  }, [_vm._m(0), _vm._v(" "), _c('ul', {
 	    staticClass: "dropdown-menu"
@@ -12782,7 +12782,8 @@
 	            content: {
 	                training: null,
 	                breeding: null,
-	                services: null
+	                services: null,
+	                'our-dogs-information': null
 	            },
 	            slickOptions: {
 	                slidesToShow: 1,
@@ -12825,7 +12826,6 @@
 	        }
 	    }
 	}; //
-	//
 	//
 	//
 	//
@@ -26442,9 +26442,9 @@
 	  }), _vm._v(" "), _c('div', {
 	    staticClass: "info-text"
 	  }, [_c('p', {
-	    staticClass: "s-3x-margin-bottom",
+	    staticClass: "s-3x-margin-bottom short-content",
 	    domProps: {
-	      "innerHTML": _vm._s(_vm.content.breeding.content)
+	      "innerHTML": _vm._s(_vm.content.breeding.shortContent)
 	    }
 	  }), _vm._v(" "), _c('img', {
 	    staticClass: "img-responsive center-block s-2x-margin-bottom",
@@ -26468,9 +26468,9 @@
 	  }), _vm._v(" "), _c('div', {
 	    staticClass: "info-text"
 	  }, [_c('p', {
-	    staticClass: "s-3x-margin-bottom",
+	    staticClass: "s-3x-margin-bottom short-content",
 	    domProps: {
-	      "innerHTML": _vm._s(_vm.content.training.content)
+	      "innerHTML": _vm._s(_vm.content.training.shortContent)
 	    }
 	  }), _vm._v(" "), _c('img', {
 	    staticClass: "img-responsive center-block s-2x-margin-bottom",
@@ -26494,9 +26494,9 @@
 	  }), _vm._v(" "), _c('div', {
 	    staticClass: "info-text"
 	  }, [_c('p', {
-	    staticClass: "s-3x-margin-bottom",
+	    staticClass: "s-3x-margin-bottom short-content",
 	    domProps: {
-	      "innerHTML": _vm._s(_vm.content.services.content)
+	      "innerHTML": _vm._s(_vm.content.services.shortContent)
 	    }
 	  }), _vm._v(" "), _c('img', {
 	    staticClass: "img-responsive center-block s-2x-margin-bottom",
@@ -26546,7 +26546,11 @@
 	    })])], 1)])]) : _vm._e()
 	  })], 2)]), _vm._v(" "), _c('div', {
 	    staticClass: "col-sm-6 col-xs-12 s-1x-margin-top"
-	  }, [_c('p', [_vm._v("\n                                Our dogs information\n                            ")]), _vm._v(" "), _c('router-link', {
+	  }, [(_vm.content['our-dogs-information']) ? _c('p', {
+	    domProps: {
+	      "innerHTML": _vm._s(_vm.content['our-dogs-information'].content)
+	    }
+	  }) : _vm._e(), _vm._v(" "), _c('router-link', {
 	    staticClass: "btn btn-primary btn-rounded-transparent btn-padded",
 	    attrs: {
 	      "to": {
