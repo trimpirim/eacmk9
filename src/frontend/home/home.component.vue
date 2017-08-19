@@ -10,16 +10,20 @@
                 <div class="col-xs-12">
                     <slick ref="slick" :options="slickOptions">
                         <div>
-                            <img src="/images/k9-slide1.jpg" alt="" class="img-responsive img-centered-vertically"/>
+                            <img src="/images/k9-slide1.jpg" alt=""
+                                 class="img-responsive img-centered-vertically-and-horizontally"/>
                         </div>
                         <div>
-                            <img src="/images/k9-slide2.jpg" alt="" class="img-responsive img-centered-vertically"/>
+                            <img src="/images/k9-slide2.jpg" alt=""
+                                 class="img-responsive img-centered-vertically-and-horizontally"/>
                         </div>
                         <div>
-                            <img src="/images/k9-slide1.jpg" alt="" class="img-responsive img-centered-vertically"/>
+                            <img src="/images/k9-slide1.jpg" alt=""
+                                 class="img-responsive img-centered-vertically-and-horizontally"/>
                         </div>
                         <div>
-                            <img src="/images/k9-slide2.jpg" alt="" class="img-responsive img-centered-vertically"/>
+                            <img src="/images/k9-slide2.jpg" alt=""
+                                 class="img-responsive img-centered-vertically-and-horizontally"/>
                         </div>
                     </slick>
                 </div>

@@ -1128,12 +1128,12 @@ h6.no-background {
     position: relative;
 }
 
-.img-centered-vertically {
+.img-centered-vertically-and-horizontally {
     position: absolute;
     height: auto;
-    left: 0;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateX(-50%);
 }
 
 @media screen and (min-width: 768px) {
@@ -1195,6 +1195,10 @@ h6.no-background {
 
     .intro-component img {
         width: 100%;
+    }
+
+    .slick-slider .slick-track {
+        height: 40vw;
     }
 }
 

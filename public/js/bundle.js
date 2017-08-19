@@ -12923,6 +12923,10 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
 
 	exports.default = Home;
 
@@ -26407,25 +26411,25 @@
 	      "options": _vm.slickOptions
 	    }
 	  }, [_c('div', [_c('img', {
-	    staticClass: "img-responsive img-centered-vertically",
+	    staticClass: "img-responsive img-centered-vertically-and-horizontally",
 	    attrs: {
 	      "src": "/images/k9-slide1.jpg",
 	      "alt": ""
 	    }
 	  })]), _vm._v(" "), _c('div', [_c('img', {
-	    staticClass: "img-responsive img-centered-vertically",
+	    staticClass: "img-responsive img-centered-vertically-and-horizontally",
 	    attrs: {
 	      "src": "/images/k9-slide2.jpg",
 	      "alt": ""
 	    }
 	  })]), _vm._v(" "), _c('div', [_c('img', {
-	    staticClass: "img-responsive img-centered-vertically",
+	    staticClass: "img-responsive img-centered-vertically-and-horizontally",
 	    attrs: {
 	      "src": "/images/k9-slide1.jpg",
 	      "alt": ""
 	    }
 	  })]), _vm._v(" "), _c('div', [_c('img', {
-	    staticClass: "img-responsive img-centered-vertically",
+	    staticClass: "img-responsive img-centered-vertically-and-horizontally",
 	    attrs: {
 	      "src": "/images/k9-slide2.jpg",
 	      "alt": ""
